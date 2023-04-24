@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Navigation from './components/navigation'
 import Footer from './components/footer'
+import MainContent from './components/mainContent'
+import { Row } from 'react-bootstrap'
 
 export default function Home() {
   return (
@@ -14,14 +16,19 @@ export default function Home() {
       <div className="App d-flex flex-column">
         <Navigation />
         <div className="container row mx-auto flex-fill">
+          <div className="col-md-2"></div>
+          <div className="flex-column col-md-8">
+            <h3>Latest Contents</h3>
+            <Row className='justify-content-around'>
+              <MainContent />
+              <MainContent />
+            </Row>
+            <Row className='justify-content-around'>
+              <MainContent />
+              <MainContent />
+            </Row>
+          </div>
           <div className="col-md-2">
-            Column
-          </div>
-          <div className="col-md-8" style={{borderLeft: 'solid', borderRight: 'solid'}}>
-            Column
-          </div>
-          <div className="col-md-2" style={{borderRight: 'solid'}}>
-            Column
           </div>
         </div>
         <Footer />
