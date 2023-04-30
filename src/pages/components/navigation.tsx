@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 const Navigation = () => {
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" sticky='top'>
       <Container>
         <Navbar.Brand href="/">Flog</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
