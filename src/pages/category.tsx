@@ -1,6 +1,9 @@
 import Head from "next/head";
 import Navigation from "./components/navigation";
 import Footer from "./components/footer";
+import ListGroup from "react-bootstrap/ListGroup";
+
+import { category } from '../dummyData'
 
 export default function Category() {
   return (
@@ -16,7 +19,12 @@ export default function Category() {
         <div className="container row mx-auto flex-fill">
           <div className="col-md-2"></div>
           <div className="col-md-8">
-            Category Section
+            <h3>Category</h3>
+            <ListGroup variant="flush">
+              {Array.from(category.keys()).map((value: string) => (
+                <ListGroup.Item key={value}><h4>{value}</h4></ListGroup.Item>
+              ))}
+            </ListGroup>
           </div>
           <div className="col-md-2"></div>
         </div>
