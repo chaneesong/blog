@@ -1,3 +1,25 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "plugins": [
+      "eslint-config-next",
+      "eslint-plugin-react",
+      "eslint-plugin-prettier",
+      "eslint-config-prettier",
+      "@typescript-eslint/eslint-plugin"
+  ],
+  "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+      "@typescript-eslint/strict-boolean-expressions": [
+          2,
+          {
+              "allowString" : false,
+              "allowNumber" : false
+          }
+      ]
+  }
 }
