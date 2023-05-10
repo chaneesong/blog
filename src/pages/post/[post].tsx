@@ -1,14 +1,11 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Col, Row } from 'react-bootstrap';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
-import { useEffect, useState } from 'react';
 
-import { markdown } from '@/dummyData';
+import { postData } from '@/dummyData/postData';
 
 export default function Post() {
   const [style, setStyle] = useState({});
@@ -31,28 +28,7 @@ export default function Post() {
         <Row className="container mx-auto flex-fill">
           <Col md={2} className="d-none d-md-block"></Col>
           <Col md={8} className="flex-column">
-            <ReactMarkdown
-              children={markdown}
-              remarkPlugins={[remarkGfm]}
-              components={{
-                code({ node, inline, className, children, ...props }) {
-                  const match = /language-(\w+)/.exec(className || '');
-                  return !inline && match ? (
-                    <SyntaxHighlighter
-                      {...props}
-                      children={String(children).replace(/\n$/, '')}
-                      style={style}
-                      language={match[1]}
-                      PreTag="div"
-                    />
-                  ) : (
-                    <code {...props} className={className}>
-                      {children}
-                    </code>
-                  );
-                },
-              }}
-            />
+            {postData()}
           </Col>
           <Col
             md={2}
