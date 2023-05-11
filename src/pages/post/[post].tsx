@@ -5,7 +5,7 @@ import { Col, Row } from 'react-bootstrap';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 
-import { postData } from '@/dummyData/postData';
+import { postData } from '@/dummyData';
 
 export default function Post() {
   const [style, setStyle] = useState({});

@@ -2,8 +2,9 @@ import Head from 'next/head';
 import Navigation from './components/navigation';
 import Footer from './components/footer';
 
-import { tag } from '../dummyData';
 import { ListGroup } from 'react-bootstrap';
+
+import { tag } from '@/dummyData';
 
 export default function Tag() {
   return (
@@ -19,6 +20,7 @@ export default function Tag() {
         <div className="container row mx-auto flex-fill contents-padding-top">
           <div className="col-md-2"></div>
           <div className="col-md-8">
+            <h3>Tags</h3>
             <ListGroup variant="flush">
               {Array.from(tag.keys()).map((value: string) => (
                 <ListGroup.Item key={value}>

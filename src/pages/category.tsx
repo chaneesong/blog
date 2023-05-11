@@ -3,7 +3,7 @@ import Navigation from './components/navigation';
 import Footer from './components/footer';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import { category } from '../dummyData';
+import { category } from '@/dummyData';
 
 export default function Category() {
   return (
