@@ -2,9 +2,11 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import { createWrapper } from 'next-redux-wrapper';
 
+import rootReducer from '@/reducers';
+
 const makeStore = () =>
   configureStore({
-    reducer: {},
+    reducer: rootReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   });
 
