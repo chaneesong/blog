@@ -1,9 +1,9 @@
-import fetchRecentPostsSlice from '@/redux/features/fetchRecentPosts/fetchRecentPostsSlice';
+import fetchRecentPostsSliceReducer from '@/redux/features/fetchRecentPosts/fetchRecentPostsSlice';
 import { HYDRATE } from 'next-redux-wrapper';
 import { combineReducers } from 'redux';
 
 const combinedReducer = combineReducers({
-  recentPosts: fetchRecentPostsSlice,
+  recentPosts: fetchRecentPostsSliceReducer,
 });
 
 const rootReducer: typeof combinedReducer = (state, action) => {
