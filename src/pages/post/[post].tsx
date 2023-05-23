@@ -5,7 +5,7 @@ import { Col, Row } from 'react-bootstrap';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 
-import { postData } from '@/dummyData';
+import { post } from '@/dummyData';
 
 export default function Post() {
   const [style, setStyle] = useState({});
@@ -28,7 +28,7 @@ export default function Post() {
         <Row className="container mx-auto flex-fill">
           <Col md={2} className="d-none d-md-block"></Col>
           <Col md={8} className="flex-column">
-            {postData()}
+            {post()}
           </Col>
           <Col
             md={2}

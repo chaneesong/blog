@@ -1,9 +1,9 @@
-import { postsData } from '@/dummyData';
+import { postCardsData } from '@/dummyData';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchRecentPosts = async (): Promise<any> => {
   // TODO 최근 게시글에 대한 비동기 요청 작성 예정
-  return postsData;
+  return postCardsData;
 };
 
 export const fetchRecentPostsThunk = createAsyncThunk(

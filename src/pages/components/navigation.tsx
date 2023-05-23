@@ -12,6 +12,7 @@ const Navigation = () => {
         variant="dark"
         expand="lg"
         className="position-fixed top-0 w-100"
+        style={{ zIndex: 1000 }}
       >
         <Container>
           <Navbar.Brand href="/">Flog</Navbar.Brand>
