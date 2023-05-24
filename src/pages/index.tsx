@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import { useEffect } from 'react';
 
 import AppLayout from './components/AppLayout';
-import MainContent from './components/mainContent';
+import RecentPostCard from './components/RecentPostCard';
 import { fetchRecentPostsThunk } from '@/redux/features/fetchRecentPosts/actions/postActions';
 
 export default function Home() {
@@ -27,7 +27,7 @@ export default function Home() {
         <h3>Latest Contents</h3>
         <Row className="justify-content-around">
           {posts.map((post) => (
-            <MainContent key={post.id} post={post} />
+            <RecentPostCard key={post.id} post={post} />
           ))}
         </Row>
       </AppLayout>
