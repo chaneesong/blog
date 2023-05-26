@@ -3,3 +3,7 @@ interface PostCard {
   title: string;
   image: string;
 }
+
+type Category = string;
+
+type Tag = string;
