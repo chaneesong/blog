@@ -1,5 +1,3 @@
-import { postCardsData } from '@/dummyData';
-
 interface FetchRecentPostsState {
   loading: boolean;
   error: string | null;
@@ -9,5 +7,5 @@ interface FetchRecentPostsState {
 export const initialState: FetchRecentPostsState = {
   loading: false,
   error: null,
-  posts: postCardsData,
+  posts: [],
 };

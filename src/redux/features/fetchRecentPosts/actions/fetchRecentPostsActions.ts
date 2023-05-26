@@ -7,7 +7,7 @@ const fetchRecentPosts = async (): Promise<any> => {
 };
 
 export const fetchRecentPostsThunk = createAsyncThunk(
-  'posts/fetchRecentPosts',
+  'post/fetchRecentPosts',
   async () => {
     try {
       const response = await fetchRecentPosts();

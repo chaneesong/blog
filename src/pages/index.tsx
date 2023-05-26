@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 import AppLayout from './components/AppLayout';
 import RecentPostCard from './components/RecentPostCard';
-import { fetchRecentPostsThunk } from '@/redux/features/fetchRecentPosts/actions/postActions';
+import { fetchRecentPostsThunk } from '@/redux/features/fetchRecentPosts/actions/fetchRecentPostsActions';
 
 export default function Home() {
   const dispatch = useAppDispatch();

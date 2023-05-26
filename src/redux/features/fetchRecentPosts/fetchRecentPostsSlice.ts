@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
-import { fetchRecentPostsThunk } from './actions/postActions';
+import { fetchRecentPostsThunk } from './actions/fetchRecentPostsActions';
 
-const FetchRecentPostsSlice = createSlice({
+const fetchRecentPostsSlice = createSlice({
   name: 'fetchRecentPosts',
   initialState,
   reducers: {},
@@ -25,4 +25,4 @@ const FetchRecentPostsSlice = createSlice({
   },
 });
 
-export default FetchRecentPostsSlice.reducer;
+export const fetchRecentPostsReducer = fetchRecentPostsSlice.reducer;
