@@ -9,7 +9,7 @@ import { fetchRecentPostsThunk } from '@/redux/features/fetchRecentPosts/actions
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const posts = useAppSelector((state) => state.recentPosts.posts);
+  const posts = useAppSelector((state) => state.postcards.data);
 
   useEffect(() => {
     dispatch(fetchRecentPostsThunk());

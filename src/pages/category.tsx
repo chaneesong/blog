@@ -1,10 +1,18 @@
 import Head from 'next/head';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import { category } from '@/dummyData';
 import AppLayout from './components/AppLayout';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
+import { useEffect } from 'react';
+import { fetchCategoryThunk } from '@/redux/features/fetchCategory/actions/fetchCategoryAction';
 
 export default function Category() {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector((state) => state.categories.data);
+
+  useEffect(() => {
+    dispatch(fetchCategoryThunk());
+  }, [dispatch]);
   return (
     <>
       <Head>
@@ -16,9 +24,9 @@ export default function Category() {
       <AppLayout>
         <h3>Category</h3>
         <ListGroup variant="flush">
-          {Array.from(category.keys()).map((value: string) => (
-            <ListGroup.Item key={value}>
-              <h4>{value}</h4>
+          {categories.map((category: string) => (
+            <ListGroup.Item key={category}>
+              <h4>{category}</h4>
             </ListGroup.Item>
           ))}
         </ListGroup>
