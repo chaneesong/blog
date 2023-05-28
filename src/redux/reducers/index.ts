@@ -3,10 +3,12 @@ import { combineReducers } from 'redux';
 
 import { fetchRecentPostsReducer } from '../features/fetchRecentPosts/fetchRecentPostsSlice';
 import { fetchCategoriesReducer } from '../features/fetchCategory/fetchCategorySlice';
+import { fetchTagsReducer } from '../features/fetchTag/fetchTagSlice';
 
 const combinedReducer = combineReducers({
-  fetchRecentPosts: fetchRecentPostsReducer,
-  fetchCategories: fetchCategoriesReducer,
+  postcards: fetchRecentPostsReducer,
+  categories: fetchCategoriesReducer,
+  tags: fetchTagsReducer,
 });
 
 const rootReducer: typeof combinedReducer = (state, action) => {

@@ -15,12 +15,12 @@ const fetchTagsSlice = createSlice({
       .addCase(fetchTagsThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.tags = action.payload;
+        state.data = action.payload;
       })
       .addCase(fetchTagsThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string | null;
-        state.tags = [];
+        state.data = [];
       });
   },
 });

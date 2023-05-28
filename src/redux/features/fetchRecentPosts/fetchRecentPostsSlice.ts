@@ -15,12 +15,12 @@ const fetchRecentPostsSlice = createSlice({
       .addCase(fetchRecentPostsThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.posts = action.payload;
+        state.data = action.payload;
       })
       .addCase(fetchRecentPostsThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string | null;
-        state.posts = [];
+        state.data = [];
       });
   },
 });

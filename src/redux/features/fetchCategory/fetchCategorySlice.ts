@@ -16,12 +16,12 @@ const fetchCategoriesSlice = createSlice({
       .addCase(fetchCategoryThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.categories = action.payload;
+        state.data = action.payload;
       })
       .addCase(fetchCategoryThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message as string | null;
-        state.categories = [];
+        state.data = [];
       });
   },
 });

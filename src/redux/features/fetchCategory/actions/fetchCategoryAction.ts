@@ -1,9 +1,9 @@
-import { categoryData } from '@/dummyData';
+import { categoriesData } from '@/dummyData';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchCategory = async (): Promise<any> => {
   // TODO 카테고리에 대한 비동기 요청 작성 예정
-  return categoryData;
+  return categoriesData;
 };
 
 export const fetchCategoryThunk = createAsyncThunk(

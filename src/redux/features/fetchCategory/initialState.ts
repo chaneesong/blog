@@ -1,11 +1,11 @@
 interface FetchCategoryState {
   loading: boolean;
   error: string | null;
-  categories: Category[];
+  data: Category[];
 }
 
 export const initialState: FetchCategoryState = {
   loading: false,
   error: null,
-  categories: [],
+  data: [],
 };
