@@ -3,8 +3,8 @@ import { Row } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import { useEffect } from 'react';
 
-import AppLayout from './components/AppLayout';
-import RecentPostCard from './components/RecentPostCard';
+import AppLayout from '../components/AppLayout';
+import RecentPostCard from '../components/RecentPostCard';
 import { fetchRecentPostsThunk } from '@/redux/features/fetchRecentPosts/actions/fetchRecentPostsActions';
 
 export default function Home() {

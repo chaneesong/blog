@@ -1,20 +1,12 @@
-import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Col, Row } from 'react-bootstrap';
 
-import Navigation from '../components/navigation';
-import Footer from '../components/footer';
+import Navigation from '../../components/Navigation';
+import Footer from '../../components/Footer';
 
 import { post } from '@/dummyData';
 
 export default function Post() {
-  const [style, setStyle] = useState({});
-  useEffect(() => {
-    import('react-syntax-highlighter/dist/esm/styles/prism').then((mod) =>
-      setStyle(mod.default)
-    );
-  });
-
   return (
     <>
       <Head>
