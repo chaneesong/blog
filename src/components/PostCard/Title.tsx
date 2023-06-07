@@ -1,16 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
 
 interface TitleProps {
   title: string;
   createdAt: string;
 }
 
-export default function Title({ title, createdAt }: TitleProps) {
-  const date = new Date();
+const Title = styled.h2``;
+const Date = styled.span`
+  margin-left: 10px;
+  font-size: 15px;
+`;
+
+export default function TitleSection({ title, createdAt }: TitleProps) {
   return (
-    <h2>
+    <Title>
       {title}
-      <span style={{ marginLeft: '10px', fontSize: '15px' }}>{createdAt}</span>
-    </h2>
+      <Date>{createdAt}</Date>
+    </Title>
   );
 }

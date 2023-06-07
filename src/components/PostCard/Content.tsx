@@ -15,6 +15,6 @@ const PostCardContent = styled.div`
   margin-bottom: 10px;
 `;
 
-export default function Content({ content }: ContentProps) {
+export default function ContentContainer({ content }: ContentProps) {
   return <PostCardContent>{content}</PostCardContent>;
 }
