@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { tagsData } from '@/dummyData';
+import { tagsData } from '../../../../../public/dummyData';
 
 const fetchTags = async (): Promise<any> => {
   // TODO 태그에 대한 비동기 요청 작성 예정

@@ -1,4 +1,4 @@
-import { postCardsData } from '@/dummyData';
+import { postCardsData } from '../../../../../public/dummyData';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchRecentPosts = async (): Promise<any> => {

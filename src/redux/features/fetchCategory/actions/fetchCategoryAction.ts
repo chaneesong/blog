@@ -1,4 +1,4 @@
-import { categoriesData } from '@/dummyData';
+import { categoriesData } from '../../../../../public/dummyData';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchCategory = async (): Promise<any> => {
