@@ -13,7 +13,7 @@ export default function TagSection({ tags }: TagProps) {
   return (
     <div>
       {tags.map((tag) => (
-        <Tag>{tag}</Tag>
+        <Tag key={tag}>{tag}</Tag>
       ))}
     </div>
   );
