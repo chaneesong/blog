@@ -5,7 +5,7 @@ import AppLayout from '../../components/AppLayout';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import { useEffect } from 'react';
 import { fetchCategoryThunk } from '@/redux/features/fetchCategory/actions/fetchCategoryAction';
-import Categorization from '@/components/Categorization';
+import Categorization from '@/components/AppLayout/Categorization';
 
 export default function CategoryList() {
   const dispatch = useAppDispatch();

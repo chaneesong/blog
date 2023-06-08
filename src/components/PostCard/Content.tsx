@@ -8,7 +8,7 @@ interface ContentProps {
 const PostCardContent = styled.div`
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   width: 100%;
   margin-left: 5px;

@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import { Col, Row } from 'react-bootstrap';
 
-import Navigation from '../../components/Navigation';
-import Footer from '../../components/Footer';
-
-import { post } from '@/dummyData';
+import { post } from '../../../public/dummyData';
+import AppLayout from '@/components/AppLayout';
 
 export default function Post() {
   return (
@@ -15,23 +13,7 @@ export default function Post() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="App d-flex flex-column contents-padding-top">
-        <Navigation />
-        <Row className="container mx-auto flex-fill">
-          <Col md={2} className="d-none d-md-block"></Col>
-          <Col md={8} className="flex-column">
-            {post()}
-          </Col>
-          <Col
-            md={2}
-            className="position-fixed d-none d-md-block"
-            style={{ right: 43 }}
-          >
-            <div>list of contents</div>
-          </Col>
-        </Row>
-        <Footer />
-      </div>
+      <AppLayout>{post()}</AppLayout>
     </>
   );
 }

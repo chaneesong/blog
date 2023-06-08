@@ -19,7 +19,7 @@ export default function PostCard({ post }: PostCardProps) {
           width={0}
           height={0}
           sizes="100vh"
-          style={{ width: '280px', height: '100%' }}
+          style={{ width: '250px', height: '100%' }}
         ></Image>
       </PostCardContainer>
     </Link>

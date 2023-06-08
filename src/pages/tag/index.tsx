@@ -5,7 +5,7 @@ import AppLayout from '../../components/AppLayout';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import { useEffect } from 'react';
 import { fetchTagsThunk } from '@/redux/features/fetchTag/actions/fetchTagAction';
-import Categorization from '@/components/Categorization';
+import Categorization from '@/components/AppLayout/Categorization';
 
 export default function TagList() {
   const dispatch = useAppDispatch();
