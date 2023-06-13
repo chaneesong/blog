@@ -12,7 +12,7 @@ const combinedReducer = combineReducers({
   categories: fetchCategoriesReducer,
   tags: fetchTagsReducer,
   postsOfCategory: fetchPostsOfCategoryReducer,
-  postsofTag: fetchPostsOfTagReducer,
+  postsOfTag: fetchPostsOfTagReducer,
 });
 
 const rootReducer: typeof combinedReducer = (state, action) => {
