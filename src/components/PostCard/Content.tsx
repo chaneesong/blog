@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { ReactNode, useEffect, useMemo, useState } from 'react';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import RemoveMarkdown from 'remove-markdown';
 import styled from 'styled-components';
 
 interface ContentProps {
@@ -16,5 +18,10 @@ const PostCardContent = styled.div`
 `;
 
 export default function ContentContainer({ content }: ContentProps) {
-  return <PostCardContent>{content}</PostCardContent>;
+  const contentPreview = useMemo(
+    () => RemoveMarkdown(content, { useImgAltText: false }),
+    [content]
+  ).slice(0, 300);
+
+  return <PostCardContent>{contentPreview}</PostCardContent>;
 }
