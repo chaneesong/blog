@@ -1,8 +1,7 @@
 import type { AppProps } from 'next/app';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Provider } from 'react-redux';
-
 import '@/styles/globals.css';
+import { Provider } from 'react-redux';
 import { wrapper } from '@/redux';
 
 function App({ Component, ...pageProps }: AppProps) {
