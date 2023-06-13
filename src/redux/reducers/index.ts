@@ -4,11 +4,15 @@ import { combineReducers } from 'redux';
 import { fetchRecentPostsReducer } from '../features/fetchRecentPosts/fetchRecentPostsSlice';
 import { fetchCategoriesReducer } from '../features/fetchCategory/fetchCategorySlice';
 import { fetchTagsReducer } from '../features/fetchTag/fetchTagSlice';
+import { fetchPostsOfCategoryReducer } from '../features/fetchPostsOfCategory/fetchPostsOfCategorySlice';
+import { fetchPostsOfTagReducer } from '../features/fetchPostsOfTag/fetchPostsOfTagSlice';
 
 const combinedReducer = combineReducers({
   postcards: fetchRecentPostsReducer,
   categories: fetchCategoriesReducer,
   tags: fetchTagsReducer,
+  postsOfCategory: fetchPostsOfCategoryReducer,
+  postsofTag: fetchPostsOfTagReducer,
 });
 
 const rootReducer: typeof combinedReducer = (state, action) => {
