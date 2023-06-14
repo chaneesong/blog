@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import AppLayout from '@/components/AppLayout';
-import { postData } from '../../../public/dummyData';
 import PostCard from '@/components/PostCard';
+import { fetchPostsThunk } from '@/redux/features/fetchPosts/actions/fetchPostsAction';
 
 export default function Post() {
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector((state) => state.posts.data);
+
+  useEffect(() => {
+    dispatch(fetchPostsThunk());
+  }, [dispatch]);
+
   return (
     <AppLayout>
       <h2>Post</h2>
 
-      {postData.map((post) => (
-        <PostCard post={post} />
+      {posts.map((post) => (
+        <PostCard key={post.id} post={post} />
       ))}
     </AppLayout>
   );
