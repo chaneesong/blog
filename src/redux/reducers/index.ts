@@ -6,11 +6,13 @@ import { fetchCategoriesReducer } from '../features/fetchCategory/fetchCategoryS
 import { fetchTagsReducer } from '../features/fetchTag/fetchTagSlice';
 import { fetchPostsOfCategoryReducer } from '../features/fetchPostsOfCategory/fetchPostsOfCategorySlice';
 import { fetchPostsOfTagReducer } from '../features/fetchPostsOfTag/fetchPostsOfTagSlice';
+import { fetchPostsReducer } from '../features/fetchPosts/fetchPostsSlice';
 
 const combinedReducer = combineReducers({
   postcards: fetchRecentPostsReducer,
   categories: fetchCategoriesReducer,
   tags: fetchTagsReducer,
+  posts: fetchPostsReducer,
   postsOfCategory: fetchPostsOfCategoryReducer,
   postsOfTag: fetchPostsOfTagReducer,
 });
