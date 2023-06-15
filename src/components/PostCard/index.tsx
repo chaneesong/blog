@@ -10,7 +10,11 @@ interface PostCardProps {
 
 export default function PostCard({ post }: PostCardProps) {
   return (
-    <Link href={'/post/' + post.id} key={post.id}>
+    <Link
+      href={{ pathname: `/post/${post.id}`, query: { ...post } }}
+      key={post.id}
+      passHref
+    >
       <PostCardContainer>
         <ContentContainer post={post} />
         <Image
