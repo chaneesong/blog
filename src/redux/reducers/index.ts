@@ -7,6 +7,7 @@ import { fetchTagsReducer } from '../features/fetchTag/fetchTagSlice';
 import { fetchPostsOfCategoryReducer } from '../features/fetchPostsOfCategory/fetchPostsOfCategorySlice';
 import { fetchPostsOfTagReducer } from '../features/fetchPostsOfTag/fetchPostsOfTagSlice';
 import { fetchPostsReducer } from '../features/fetchPosts/fetchPostsSlice';
+import { posterReducer } from '../features/posterSlice/posterSlice';
 
 const combinedReducer = combineReducers({
   postcards: fetchRecentPostsReducer,
@@ -15,6 +16,7 @@ const combinedReducer = combineReducers({
   posts: fetchPostsReducer,
   postsOfCategory: fetchPostsOfCategoryReducer,
   postsOfTag: fetchPostsOfTagReducer,
+  poster: posterReducer,
 });
 
 const rootReducer: typeof combinedReducer = (state, action) => {
