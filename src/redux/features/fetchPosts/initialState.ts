@@ -1,7 +1,7 @@
 interface FetchPosts {
   loading: boolean;
   error: string | null;
-  data: PostCard[];
+  data: Post[];
 }
 
 export const initialState: FetchPosts = {

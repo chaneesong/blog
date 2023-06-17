@@ -3,17 +3,26 @@ import Image from 'next/image';
 import React from 'react';
 import PostCardContainer from './MainContainer';
 import ContentContainer from './ContentContainer';
+import { useDispatch } from 'react-redux';
+import { setPost } from '@/redux/features/posterSlice/posterSlice';
 
 interface PostCardProps {
-  post: PostCard;
+  post: Post;
 }
 
 export default function PostCard({ post }: PostCardProps) {
+  const dispatch = useDispatch();
+
+  const handleSetPost = () => {
+    dispatch(setPost({ ...post }));
+  };
+
   return (
     <Link
-      href={{ pathname: `/post/${post.id}`, query: { ...post } }}
+      href={`/post/${post.id}`}
       key={post.id}
       passHref
+      onClick={handleSetPost}
     >
       <PostCardContainer>
         <ContentContainer post={post} />

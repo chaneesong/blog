@@ -2,7 +2,7 @@ type Category = string;
 
 type Tag = string;
 
-interface PostCard {
+interface Post {
   id: number;
   title: string;
   content: string;
