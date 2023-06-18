@@ -1,15 +1,15 @@
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { Row } from 'react-bootstrap';
-import { useAppDispatch } from '@/redux/hooks/reduxHooks';
-import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 
 import AppLayout from '../components/AppLayout';
 import { fetchRecentPostsThunk } from '@/redux/features/fetchRecentPosts/actions/fetchRecentPostsActions';
-import { postData } from '../../public/dummyData';
 import PostCard from '@/components/PostCard';
 
-export default function Home() {
+const Home = () => {
   const dispatch = useAppDispatch();
+  const posts = useAppSelector((state) => state.recentPostCards.data);
 
   useEffect(() => {
     dispatch(fetchRecentPostsThunk());
@@ -26,11 +26,13 @@ export default function Home() {
       <AppLayout>
         <h3>Latest Contents</h3>
         <Row className="justify-content-around">
-          {postData.map((post) => (
+          {posts.map((post) => (
             <PostCard post={post} key={post.id} />
           ))}
         </Row>
       </AppLayout>
     </>
   );
-}
+};
+
+export default Home;

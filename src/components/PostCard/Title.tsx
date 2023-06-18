@@ -12,11 +12,13 @@ const Date = styled.span`
   font-size: 15px;
 `;
 
-export default function TitleSection({ title, createdAt }: TitleProps) {
+const PostCardTitle = ({ title, createdAt }: TitleProps) => {
   return (
     <Title>
       {title}
       <Date>{createdAt}</Date>
     </Title>
   );
-}
+};
+
+export default PostCardTitle;

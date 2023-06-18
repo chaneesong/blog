@@ -3,9 +3,9 @@ import AppLayout from '@/components/AppLayout';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import PostCard from '@/components/PostCard';
-import { fetchPostsOfTagThunk } from '@/redux/features/fetchPostsOfTag/actions/fetchPostsOfTagACtion';
+import { fetchPostsOfTagThunk } from '@/redux/features/fetchPostsOfTag/actions/fetchPostsOfTagAction';
 
-export default function Tag() {
+const Tag = () => {
   const router = useRouter();
   const { tag } = router.query;
   const dispatch = useAppDispatch();
@@ -24,4 +24,6 @@ export default function Tag() {
       ))}
     </AppLayout>
   );
-}
+};
+
+export default Tag;

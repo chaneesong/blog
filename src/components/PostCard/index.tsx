@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
-import PostCardContainer from './MainContainer';
-import ContentContainer from './ContentContainer';
 import { useDispatch } from 'react-redux';
+
+import PostCardContainer from './Container';
+import ContentsContainer from './ContentContainer';
 import { setPost } from '@/redux/features/posterSlice/posterSlice';
 
 interface PostCardProps {
   post: Post;
 }
 
-export default function PostCard({ post }: PostCardProps) {
+const PostCard = ({ post }: PostCardProps) => {
   const dispatch = useDispatch();
 
   const handleSetPost = () => {
@@ -25,7 +26,7 @@ export default function PostCard({ post }: PostCardProps) {
       onClick={handleSetPost}
     >
       <PostCardContainer>
-        <ContentContainer post={post} />
+        <ContentsContainer post={post} />
         <Image
           src="/images/preview.png"
           alt="preview"
@@ -37,4 +38,6 @@ export default function PostCard({ post }: PostCardProps) {
       </PostCardContainer>
     </Link>
   );
-}
+};
+
+export default PostCard;

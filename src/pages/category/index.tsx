@@ -1,13 +1,13 @@
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 
 import AppLayout from '../../components/AppLayout';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
-import { useEffect } from 'react';
 import { fetchCategoryThunk } from '@/redux/features/fetchCategory/actions/fetchCategoryAction';
 import Categorization from '@/components/AppLayout/Categorization';
 
-export default function CategoryList() {
+const CategoryList = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector((state) => state.categories.data);
 
@@ -32,4 +32,6 @@ export default function CategoryList() {
       </AppLayout>
     </>
   );
-}
+};
+
+export default CategoryList;

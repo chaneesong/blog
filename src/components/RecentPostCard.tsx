@@ -2,10 +2,10 @@ import Link from 'next/link';
 import Card from 'react-bootstrap/Card';
 
 interface PostProps {
-  post: PostCard;
+  post: Post;
 }
 
-export default function RecentPostCard({ post }: PostProps) {
+const RecentPostCard = ({ post }: PostProps) => {
   return (
     <Link
       href={'/post/' + post.id}
@@ -17,4 +17,6 @@ export default function RecentPostCard({ post }: PostProps) {
       </Card>
     </Link>
   );
-}
+};
+
+export default RecentPostCard;

@@ -5,7 +5,7 @@ import AppLayout from '@/components/AppLayout';
 import PostCard from '@/components/PostCard';
 import { fetchPostsThunk } from '@/redux/features/fetchPosts/actions/fetchPostsAction';
 
-export default function Post() {
+const PostList = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts.data);
 
@@ -22,4 +22,6 @@ export default function Post() {
       ))}
     </AppLayout>
   );
-}
+};
+
+export default PostList;

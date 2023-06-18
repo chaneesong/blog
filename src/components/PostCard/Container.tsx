@@ -18,8 +18,8 @@ const Container = styled.div`
   }
 `;
 
-export default function PostCardContainer({
-  children,
-}: PostCardContainerProps) {
+const PostCardContainer = ({ children }: PostCardContainerProps) => {
   return <Container>{children}</Container>;
-}
+};
+
+export default PostCardContainer;

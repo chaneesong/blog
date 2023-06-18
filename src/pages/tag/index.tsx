@@ -1,13 +1,13 @@
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { ListGroup } from 'react-bootstrap';
 
 import AppLayout from '../../components/AppLayout';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
-import { useEffect } from 'react';
 import { fetchTagsThunk } from '@/redux/features/fetchTag/actions/fetchTagAction';
 import Categorization from '@/components/AppLayout/Categorization';
 
-export default function TagList() {
+const TagList = () => {
   const dispatch = useAppDispatch();
   const tags = useAppSelector((state) => state.tags.data);
 
@@ -33,4 +33,6 @@ export default function TagList() {
       </AppLayout>
     </>
   );
-}
+};
+
+export default TagList;

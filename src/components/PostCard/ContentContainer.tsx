@@ -1,26 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import Title from './Title';
 import CategorySection from './Category';
 import Content from './Content';
 import TagSection from './Tag';
 
 interface PostContentProps {
-  post: PostCard;
+  post: Post;
 }
 
-const ContentsContainer = styled.div`
+const StyledContentsContainer = styled.div`
   margin: 10px;
   border: 1px solid white;
 `;
 
-export default function ContentContainer({ post }: PostContentProps) {
+const ContentsContainer = ({ post }: PostContentProps) => {
   return (
-    <ContentsContainer>
+    <StyledContentsContainer>
       <Title title={post.title} createdAt={post.createdAt} />
       <CategorySection category={post.category} />
       <Content content={post.content} />
       <TagSection tags={post.tags} />
-    </ContentsContainer>
+    </StyledContentsContainer>
   );
-}
+};
+
+export default ContentsContainer;

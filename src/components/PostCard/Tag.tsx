@@ -9,7 +9,7 @@ const Tag = styled.span`
   margin-right: 5px;
 `;
 
-export default function TagSection({ tags }: TagProps) {
+const PostCardTags = ({ tags }: TagProps) => {
   return (
     <div>
       {tags.map((tag) => (
@@ -17,4 +17,6 @@ export default function TagSection({ tags }: TagProps) {
       ))}
     </div>
   );
-}
+};
+
+export default PostCardTags;

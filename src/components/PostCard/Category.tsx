@@ -9,6 +9,8 @@ const Category = styled.div`
   margin-bottom: 10px;
 `;
 
-export default function CategorySection({ category }: CategoryProps) {
+const CategorySection = ({ category }: CategoryProps) => {
   return <Category>{category}</Category>;
-}
+};
+
+export default CategorySection;

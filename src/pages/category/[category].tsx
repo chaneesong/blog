@@ -1,11 +1,12 @@
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
+
 import AppLayout from '@/components/AppLayout';
 import PostCard from '@/components/PostCard';
 import { fetchPostsOfCategoryThunk } from '@/redux/features/fetchPostsOfCategory/actions/fetchPostsOfCategoryAction';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
 
-export default function Category() {
+const Category = () => {
   const router = useRouter();
   const { category } = router.query;
   const dispatch = useAppDispatch();
@@ -24,4 +25,6 @@ export default function Category() {
       ))}
     </AppLayout>
   );
-}
+};
+
+export default Category;
