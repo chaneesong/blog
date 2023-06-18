@@ -8,7 +8,7 @@ const createdAt = `${date.getFullYear()} / ${
   date.getMonth() + 1
 } / ${date.getDate()}`;
 
-export const postData = [
+export const dummyPostData: Post[] = [
   {
     id: 1,
     title: 'Title1',
