@@ -1,4 +1,4 @@
-export const initialState = {
+export const initialState: Post = {
   id: 0,
   title: '',
   content: '',

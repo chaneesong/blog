@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { postData } from '../../../../../public/dummyData';
+import { dummyPostData } from '../../../../../public/dummyData';
 
 const fetchPostsOfCategory = async (): Promise<any> => {
   // TODO 카테고리 게시글에 대한 비동기 요청 작성 예정
-  return postData;
+  return dummyPostData;
 };
 
 export const fetchPostsOfCategoryThunk = createAsyncThunk(

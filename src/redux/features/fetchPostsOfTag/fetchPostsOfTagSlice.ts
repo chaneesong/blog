@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
-import { fetchPostsOfTagThunk } from './actions/fetchPostsOfTagACtion';
+import { fetchPostsOfTagThunk } from './actions/fetchPostsOfTagAction';
 
 const fetchPostsOfTagSlice = createSlice({
   name: 'fetchPostsOfTag',

@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { postData } from '../../../../../public/dummyData';
+import { dummyPostData } from '../../../../../public/dummyData';
 
 const fetchPostsOfTag = async (): Promise<any> => {
-  return postData;
+  return dummyPostData;
 };
 
 export const fetchPostsOfTagThunk = createAsyncThunk(
