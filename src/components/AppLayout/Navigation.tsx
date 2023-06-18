@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export default function Navigation() {
+const Navigation = () => {
   return (
     <>
       <Navbar
@@ -37,4 +37,6 @@ export default function Navigation() {
       </Navbar>
     </>
   );
-}
+};
+
+export default Navigation;

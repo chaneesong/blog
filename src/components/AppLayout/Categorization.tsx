@@ -7,7 +7,7 @@ interface CategorizationProps {
   root: string;
 }
 
-export default function Categorization({ prefix, root }: CategorizationProps) {
+const Categorization = ({ prefix, root }: CategorizationProps) => {
   return (
     <Link href={prefix + '/' + root}>
       <ListGroup.Item variant="flush">
@@ -15,4 +15,6 @@ export default function Categorization({ prefix, root }: CategorizationProps) {
       </ListGroup.Item>
     </Link>
   );
-}
+};
+
+export default Categorization;

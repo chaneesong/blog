@@ -5,7 +5,7 @@ const AppFooter = styled.footer`
   border-top: solid;
 `;
 
-export default function Footer() {
+const Footer = () => {
   return (
     <>
       <AppFooter>
@@ -13,4 +13,6 @@ export default function Footer() {
       </AppFooter>
     </>
   );
-}
+};
+
+export default Footer;
