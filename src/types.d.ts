@@ -11,3 +11,15 @@ interface Post {
   tags: Tag[];
   image?: string;
 }
+
+interface PostTitleProp {
+  id: number;
+  title: string;
+  category: string;
+  tags: string[];
+  createdAt: string;
+}
+
+interface ReactNodeProps {
+  children: React.ReactNode;
+}
