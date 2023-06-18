@@ -10,7 +10,7 @@ import { fetchPostsReducer } from '../features/fetchPosts/fetchPostsSlice';
 import { posterReducer } from '../features/posterSlice/posterSlice';
 
 const combinedReducer = combineReducers({
-  postcards: fetchRecentPostsReducer,
+  recentPostCards: fetchRecentPostsReducer,
   categories: fetchCategoriesReducer,
   tags: fetchTagsReducer,
   posts: fetchPostsReducer,
