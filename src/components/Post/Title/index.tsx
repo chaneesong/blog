@@ -1,17 +1,22 @@
 import React from 'react';
+import {
+  StyledCreatedAt,
+  StyledTag,
+  StyledTitle,
+  TitleContainer,
+} from './styled';
 
 const Title = ({ titleProp }: { titleProp: PostTitleProp }) => {
   return (
-    <>
-      <div>{titleProp.title}</div>
-      <div>{titleProp.category}</div>
+    <TitleContainer>
+      <StyledTitle>{titleProp.title}</StyledTitle>
+      <StyledCreatedAt>{titleProp.createdAt}</StyledCreatedAt>
       <div>
         {titleProp.tags.map((tag: string) => (
-          <span>{tag}</span>
+          <StyledTag key={tag}>{tag}</StyledTag>
         ))}
       </div>
-      <div>{titleProp.createdAt}</div>
-    </>
+    </TitleContainer>
   );
 };
 
