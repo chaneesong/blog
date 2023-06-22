@@ -1,3 +1,4 @@
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,7 +12,7 @@ const Navigation = () => {
         bg="dark"
         variant="dark"
         expand="lg"
-        className="position-fixed top-0 w-100"
+        className="position-sticky top-0 w-100"
         style={{ zIndex: 1000 }}
       >
         <Container>
