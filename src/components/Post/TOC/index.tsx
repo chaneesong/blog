@@ -1,10 +1,18 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 interface HeadingInfo {
   text: string | null;
   id: string;
 }
+
+const TOCContainer = styled.div`
+  position: sticky;
+  top: 10%;
+`;
+
+const DEFAULT_HEIGHT = 50;
 
 const TOC = () => {
   const [headingList, setHeadingList] = useState([] as HeadingInfo[]);
@@ -20,14 +28,34 @@ const TOC = () => {
     );
   }, []);
 
+  const onClickTOC = useCallback(
+    (id: string) => () => {
+      const targetTag = document.getElementById(id);
+      const bodyRect = document.body.getBoundingClientRect();
+      const targetTagRect = targetTag?.getBoundingClientRect();
+
+      if (!bodyRect || !targetTagRect) {
+        return;
+      }
+
+      const scrollPosition = targetTagRect.top - bodyRect.top - DEFAULT_HEIGHT;
+
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth',
+      });
+    },
+    []
+  );
+
   return (
-    <div>
+    <TOCContainer>
       {headingList.map((heading) => (
-        <Link href={`#${heading.id}`} key={heading.id}>
-          <div>{heading.text}</div>
-        </Link>
+        <div key={heading.id} onClick={onClickTOC(heading.id)}>
+          {heading.text}
+        </div>
       ))}
-    </div>
+    </TOCContainer>
   );
 };
 
