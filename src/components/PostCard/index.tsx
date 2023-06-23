@@ -6,10 +6,16 @@ import { useDispatch } from 'react-redux';
 import PostCardContainer from './Container';
 import ContentsContainer from './ContentContainer';
 import { setPost } from '@/redux/features/posterSlice/posterSlice';
+import styled from 'styled-components';
 
 interface PostCardProps {
   post: Post;
 }
+
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration-line: none;
+`;
 
 const PostCard = ({ post }: PostCardProps) => {
   const dispatch = useDispatch();
@@ -19,7 +25,7 @@ const PostCard = ({ post }: PostCardProps) => {
   };
 
   return (
-    <Link
+    <StyledLink
       href={`/post/${post.id}`}
       key={post.id}
       passHref
@@ -36,7 +42,7 @@ const PostCard = ({ post }: PostCardProps) => {
           style={{ width: '250px', height: '100%' }}
         ></Image>
       </PostCardContainer>
-    </Link>
+    </StyledLink>
   );
 };
 
