@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import AppLayout from '@/components/AppLayout';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
-import PostCard from '@/components/PostCard';
 import { fetchPostsOfTagThunk } from '@/redux/features/fetchPostsOfTag/actions/fetchPostsOfTagAction';
+import { separateLayers } from '@/lib/PostCard/separateLayers';
 
 const Tag = () => {
   const router = useRouter();
@@ -15,13 +15,13 @@ const Tag = () => {
     dispatch(fetchPostsOfTagThunk());
   }, [dispatch]);
 
+  const { postCards, miniPostCards } = separateLayers(posts);
+
   return (
     <AppLayout>
       <h3>{tag}</h3>
-
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
+      <div>{postCards}</div>
+      <div className="row justify-content-around">{miniPostCards}</div>
     </AppLayout>
   );
 };

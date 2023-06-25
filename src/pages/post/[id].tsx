@@ -28,12 +28,6 @@ const Post = () => {
 
   return (
     <>
-      <Head>
-        <title>Flog</title>
-        <meta name="description" content="Index page of blog" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <AppLayout>
         <Title titleProp={titleElement}></Title>
         <ContentContainer content={postData.content} />
