@@ -7,11 +7,9 @@ const AppFooter = styled.footer`
 
 const Footer = () => {
   return (
-    <>
-      <AppFooter>
-        <div className="container p-3">© 2023 Chaneesong Copyright</div>
-      </AppFooter>
-    </>
+    <AppFooter>
+      <div className="container p-3">© 2023 Chaneesong Copyright</div>
+    </AppFooter>
   );
 };
 

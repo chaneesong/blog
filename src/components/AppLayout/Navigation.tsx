@@ -9,8 +9,7 @@ const Navigation = () => {
   return (
     <>
       <Navbar
-        bg="dark"
-        variant="dark"
+        bg="light"
         expand="lg"
         className="position-sticky top-0 w-100"
         style={{ zIndex: 1000 }}
@@ -20,7 +19,7 @@ const Navigation = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/post">All</Nav.Link>
+              <Nav.Link href="/post">All Posts</Nav.Link>
               <Nav.Link href="/category">Category</Nav.Link>
               <Nav.Link href="/tag">Tag</Nav.Link>
             </Nav>
