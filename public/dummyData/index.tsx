@@ -11,7 +11,8 @@ const createdAt = `${date.getFullYear()} / ${
 export const dummyPostData: Post[] = [
   {
     id: 1,
-    title: 'Title Test',
+    title:
+      '타이틀의 길이가 2줄 이상이면 어떻게 표시될까? 정상적으로 표시된다. 그렇다면 3줄일 경우 어떻게 표시되는지 궁금하지 않나?',
     content: `## Intro
     
     리트코드의 Group Anagrams라는 문제를 풀다가 테스트코드를 작성하는데 지문에 이런 문구가 있다.  
