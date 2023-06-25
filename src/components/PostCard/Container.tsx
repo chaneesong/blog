@@ -8,7 +8,7 @@ type PostCardContainerProps = {
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 160px;
+  height: auto;
   border: 1px solid #d3d3d3;
   margin-bottom: 30px;
   transition: box-shadow 0.1s ease-in-out;

@@ -6,10 +6,20 @@ import { useDispatch } from 'react-redux';
 import PostCardContainer from './Container';
 import ContentsContainer from './ContentContainer';
 import { setPost } from '@/redux/features/posterSlice/posterSlice';
+import styled from 'styled-components';
 
 interface PostCardProps {
   post: Post;
 }
+
+const StyledImage = styled(Image)`
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 100%;
+  min-height: 170px;
+  min-width: 220px;
+`;
 
 const PostCard = ({ post }: PostCardProps) => {
   const dispatch = useDispatch();
@@ -27,14 +37,13 @@ const PostCard = ({ post }: PostCardProps) => {
     >
       <PostCardContainer>
         <ContentsContainer post={post} />
-        <Image
+        <StyledImage
           src={post.image as string}
           alt="preview"
           width={0}
           height={0}
           sizes="100vh"
-          style={{ width: '250px', height: '100%' }}
-        ></Image>
+        ></StyledImage>
       </PostCardContainer>
     </Link>
   );

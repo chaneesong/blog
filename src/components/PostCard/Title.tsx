@@ -6,19 +6,12 @@ interface TitleProps {
   createdAt: string;
 }
 
-const Title = styled.h2``;
-const Date = styled.span`
-  margin-left: 10px;
-  font-size: 15px;
+const Title = styled.h2`
+  font-size: 23px;
 `;
 
 const PostCardTitle = ({ title, createdAt }: TitleProps) => {
-  return (
-    <Title>
-      {title}
-      <Date>{createdAt}</Date>
-    </Title>
-  );
+  return <Title>{title}</Title>;
 };
 
 export default PostCardTitle;

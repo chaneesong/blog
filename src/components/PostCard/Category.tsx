@@ -6,7 +6,14 @@ interface CategoryProps {
 }
 
 const Category = styled.div`
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 5px;
   margin-bottom: 10px;
+
+  &:hover {
+    color: grey;
+  }
 `;
 
 const CategorySection = ({ category }: CategoryProps) => {
