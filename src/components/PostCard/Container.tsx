@@ -9,12 +9,13 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   height: 160px;
-  border: 1px solid;
+  border: 1px solid #d3d3d3;
   margin-bottom: 30px;
-  transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
 
   &:hover {
-    box-shadow: 3px 3px 3px gray;
+    box-shadow: 3px 3px 3px #d3d3d3;
+    transition: box-shadow 0.1s ease-in-out;
   }
 `;
 
