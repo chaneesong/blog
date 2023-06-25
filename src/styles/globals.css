@@ -10,3 +10,16 @@ body,
 .contents-padding-top {
   padding-top: 20px;
 }
+
+.contents-margin-top {
+  margin-top: 10px;
+}
+
+a {
+  color: black;
+  text-decoration-line: none;
+}
+
+a:hover {
+  color: inherit;
+}
