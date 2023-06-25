@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AppFooter = styled.footer`
+  width: 100%;
   border-top: solid;
 `;
 
