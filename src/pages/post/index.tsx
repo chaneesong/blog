@@ -15,7 +15,7 @@ const PostList = () => {
 
   return (
     <AppLayout>
-      <h2>Post</h2>
+      <h2>All Posts</h2>
 
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 
 import AppLayout from '../components/AppLayout';
 import { fetchRecentPostsThunk } from '@/redux/features/fetchRecentPosts/actions/fetchRecentPostsActions';
-import PostCard from '@/components/PostCard';
+import MiniPostCard from '@/components/MiniPostCard';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -24,10 +24,10 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppLayout>
-        <h3>Latest Contents</h3>
+        <h3>최근 게시글</h3>
         <Row className="justify-content-around">
           {posts.map((post) => (
-            <PostCard post={post} key={post.id} />
+            <MiniPostCard post={post} key={post.id} />
           ))}
         </Row>
       </AppLayout>
