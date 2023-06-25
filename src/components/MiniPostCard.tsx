@@ -24,7 +24,7 @@ const MiniPostCard = ({ post }: PostProps) => {
 
   return (
     <Link
-      href={'/post/' + post.id}
+      href={`/post/${post.id}`}
       style={{ width: '20rem', marginBottom: '10px' }}
     >
       <Card style={{ border: 'none' }}>
