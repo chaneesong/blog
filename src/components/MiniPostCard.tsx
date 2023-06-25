@@ -8,6 +8,14 @@ interface PostProps {
   post: Post;
 }
 
+const StyledLink = styled(Link)`
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
+
 const StyledPostCardContent = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -23,7 +31,7 @@ const MiniPostCard = ({ post }: PostProps) => {
   ).slice(0, 100);
 
   return (
-    <Link
+    <StyledLink
       href={`/post/${post.id}`}
       style={{ width: '20rem', marginBottom: '10px' }}
     >
@@ -32,7 +40,7 @@ const MiniPostCard = ({ post }: PostProps) => {
         <Card.Title className="contents-margin-top">{post.title}</Card.Title>
         <StyledPostCardContent>{contentPreview}</StyledPostCardContent>
       </Card>
-    </Link>
+    </StyledLink>
   );
 };
 

@@ -15,7 +15,6 @@ const Container = styled.div`
 
   &:hover {
     box-shadow: 3px 3px 3px #d3d3d3;
-    transition: box-shadow 0.1s ease-in-out;
   }
 `;
 
