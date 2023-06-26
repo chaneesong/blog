@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 
 import AppLayout from '../../components/AppLayout';
 import { fetchCategoryThunk } from '@/redux/features/fetchCategory/actions/fetchCategoryAction';
-import Categorization from '@/components/AppLayout/Categorization';
+import Categorization from '@/components/Categorization';
 
 const CategoryList = () => {
   const dispatch = useAppDispatch();

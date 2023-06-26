@@ -5,7 +5,7 @@ import { ListGroup } from 'react-bootstrap';
 import AppLayout from '../../components/AppLayout';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import { fetchTagsThunk } from '@/redux/features/fetchTag/actions/fetchTagAction';
-import Categorization from '@/components/AppLayout/Categorization';
+import Categorization from '@/components/Categorization';
 
 const TagList = () => {
   const dispatch = useAppDispatch();
