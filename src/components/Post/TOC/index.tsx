@@ -10,6 +10,8 @@ interface HeadingInfo {
 const TOCContainer = styled.div`
   position: sticky;
   top: 10%;
+  padding-left: 15px;
+  border-left: 3px solid #e3e3e3;
 `;
 
 const DEFAULT_HEIGHT = 50;
