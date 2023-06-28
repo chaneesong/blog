@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Card from 'react-bootstrap/Card';
 import RemoveMarkdown from 'remove-markdown';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setPost } from '@/redux/features/posterSlice/posterSlice';
 
 interface PostProps {
   post: Post;
@@ -30,10 +32,17 @@ const MiniPostCard = ({ post }: PostProps) => {
     [post.content]
   ).slice(0, 100);
 
+  const dispatch = useDispatch();
+
+  const handleSetPost = () => {
+    dispatch(setPost({ ...post }));
+  };
+
   return (
     <StyledLink
       href={`/post/${post.id}`}
       style={{ width: '20rem', marginBottom: '10px' }}
+      onClick={handleSetPost}
     >
       <Card style={{ border: 'none' }}>
         <Card.Img style={{ borderRadius: '5px' }} src={post.image} />
