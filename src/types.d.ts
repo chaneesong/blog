@@ -20,6 +20,10 @@ interface PostTitleProp {
   createdAt: string;
 }
 
+interface PostCardProps {
+  post: Post;
+}
+
 interface ReactNodeProps {
   children: React.ReactNode;
 }
