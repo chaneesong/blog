@@ -8,10 +8,6 @@ import ContentsContainer from './ContentContainer';
 import { setPost } from '@/redux/features/posterSlice/posterSlice';
 import styled from 'styled-components';
 
-interface PostCardProps {
-  post: Post;
-}
-
 const StyledImage = styled(Image)`
   width: 100%;
   height: auto;
