@@ -13,7 +13,7 @@ const PosterGrid = ({ children }: ReactNodeProps) => {
         <div className="row">
           <div className="col-md-1"></div>
           <div className="flex-column col-md-8">{content}</div>
-          <div className="col-md-3">{toc}</div>
+          <div className="col-md-3 d-none d-md-block">{toc}</div>
         </div>
       </div>
     </>
