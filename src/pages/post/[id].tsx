@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 
@@ -30,7 +29,7 @@ const Post = () => {
     <>
       <AppLayout>
         <Title titleProp={titleElement}></Title>
-        <ContentContainer content={postData.content} />
+        <ContentContainer content={content} />
         <TOC />
       </AppLayout>
     </>

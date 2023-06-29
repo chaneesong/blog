@@ -89,6 +89,9 @@ describe("groupAnagrams", () => {
 정수 배열이 주어질 때, 3개의 엘리먼트가 \`i != j~, ~i != k~, ~j != k\`이고,  
 \`nums[i] + nums[j] + nums[k] === 0\`인 경우를 모두 찾으시오.
 
+> 인용구 테스트  
+> 두 줄 테스트
+
 결과에 중복이 존재해서는 안된다.
 
 ## 해결 방법
@@ -101,8 +104,6 @@ describe("groupAnagrams", () => {
 2. 합이 0보다 작으면 left를 오른쪽으로 한 칸 옮긴다.
 3. 합이 0보다 크면 right를 왼쪽으로 한 칸 옮긴다.
 4. 0일 경우 결과에 저장하고, left와 right에 중복만큼 포인터를 넘긴다.
-
-![3 Sum](/assets/img/algorithm/3sum/movement.gif){:style='border:1px solid #eaeaea; border-radius: 7px; padding: 0px;' }
 
 ## 풀이 코드
 
