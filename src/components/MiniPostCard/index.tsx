@@ -5,25 +5,18 @@ import RemoveMarkdown from 'remove-markdown';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { setPost } from '@/redux/features/posterSlice/posterSlice';
+import CardBody from './components/CardBody';
+import CardTitle from './components/CardTitle';
+import CardContent from './components/CardContent';
+import CardContainer from './components/CardContainer';
 
 interface PostProps {
   post: Post;
 }
 
 const StyledLink = styled(Link)`
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-`;
-
-const StyledPostCardContent = styled.div`
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 20rem;
+  margin-bottom: 10px;
 `;
 
 const MiniPostCard = ({ post }: PostProps) => {
@@ -39,16 +32,14 @@ const MiniPostCard = ({ post }: PostProps) => {
   };
 
   return (
-    <StyledLink
-      href={`/post/${post.id}`}
-      style={{ width: '20rem', marginBottom: '10px' }}
-      onClick={handleSetPost}
-    >
-      <Card style={{ border: 'none' }}>
-        <Card.Img style={{ borderRadius: '5px' }} src={post.image} />
-        <Card.Title className="contents-margin-top">{post.title}</Card.Title>
-        <StyledPostCardContent>{contentPreview}</StyledPostCardContent>
-      </Card>
+    <StyledLink href={`/post/${post.id}`} onClick={handleSetPost}>
+      <CardContainer>
+        <Card.Img src={post.image} />
+        <CardBody>
+          <CardTitle>{post.title}</CardTitle>
+          <CardContent>{contentPreview}</CardContent>
+        </CardBody>
+      </CardContainer>
     </StyledLink>
   );
 };
