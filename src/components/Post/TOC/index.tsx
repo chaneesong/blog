@@ -1,18 +1,11 @@
-import Link from 'next/link';
 import React, { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import TOCContainer from './TOCComponents/TOCContainer';
+import TOCElement from './TOCComponents/TOCElement';
 
 interface HeadingInfo {
   text: string | null;
   id: string;
 }
-
-const TOCContainer = styled.div`
-  position: sticky;
-  top: 10%;
-  padding-left: 15px;
-  border-left: 3px solid #e3e3e3;
-`;
 
 const DEFAULT_HEIGHT = 50;
 
@@ -53,9 +46,9 @@ const TOC = () => {
   return (
     <TOCContainer>
       {headingList.map((heading) => (
-        <div key={heading.id} onClick={onClickTOC(heading.id)}>
+        <TOCElement key={heading.id} onClick={onClickTOC(heading.id)}>
           {heading.text}
-        </div>
+        </TOCElement>
       ))}
     </TOCContainer>
   );
