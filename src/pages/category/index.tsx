@@ -17,7 +17,7 @@ const CategoryList = () => {
   return (
     <>
       <AppLayout>
-        <h3>Category</h3>
+        Category
         <ListGroup variant="flush">
           {categories.map((category: string) => (
             <Categorization prefix="/category" root={category} key={category} />

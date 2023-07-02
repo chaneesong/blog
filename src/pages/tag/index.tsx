@@ -18,7 +18,7 @@ const TagList = () => {
   return (
     <>
       <AppLayout>
-        <h3>Tags</h3>
+        Tags
         <ListGroup variant="flush">
           {tags.map((tag: string) => (
             <Categorization prefix="/tag" root={tag} key={tag} />

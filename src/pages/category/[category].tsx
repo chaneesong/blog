@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 
 import AppLayout from '@/components/AppLayout';
-import PostCard from '@/components/PostCard';
 import { fetchPostsOfCategoryThunk } from '@/redux/features/fetchPostsOfCategory/actions/fetchPostsOfCategoryAction';
 import { separateLayers } from '@/lib/PostCard/separateLayers';
 

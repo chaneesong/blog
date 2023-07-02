@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledTitle } from './styled';
 
 const TwoPostCardGrid = ({ children }: ReactNodeProps) => {
   const [title, postCard, miniPostCard] = React.Children.toArray(children);
@@ -6,11 +7,11 @@ const TwoPostCardGrid = ({ children }: ReactNodeProps) => {
   return (
     <>
       <div className="flex-column col-lg-8 d-none d-md-block">
-        {title}
+        <StyledTitle>{title}</StyledTitle>
         {postCard}
       </div>
       <div className="flex-column col-lg-8 d-md-none">
-        {title}
+        <StyledTitle>{title}</StyledTitle>
         {miniPostCard}
       </div>
     </>

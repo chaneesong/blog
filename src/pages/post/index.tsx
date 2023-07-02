@@ -18,7 +18,7 @@ const PostList = () => {
   return (
     <>
       <AppLayout>
-        <h2>All Posts</h2>
+        All Posts
         <div>{postCards}</div>
         <div className="row justify-content-around">{miniPostCards}</div>
       </AppLayout>
