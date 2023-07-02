@@ -25,7 +25,7 @@ const NavLink = ({ element }: NavLinkProps) => {
       className={isActive(`/${element.toLowerCase()}`) ? 'active' : ''}
       href={`/${element.toLowerCase()}`}
     >
-      {element}
+      {element === 'post' ? 'All Posts' : element}
     </StyledNavLink>
   );
 };
