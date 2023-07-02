@@ -4,6 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import styled from 'styled-components';
+import NavLink from './NavLink';
 
 const Navigation = () => {
   return (
@@ -19,9 +21,9 @@ const Navigation = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/post">All Posts</Nav.Link>
-              <Nav.Link href="/category">Category</Nav.Link>
-              <Nav.Link href="/tag">Tag</Nav.Link>
+              {['post', 'Category', 'Tag'].map((element: string) => (
+                <NavLink key={element} element={element} />
+              ))}
             </Nav>
             <Form className="d-flex">
               <Form.Control
