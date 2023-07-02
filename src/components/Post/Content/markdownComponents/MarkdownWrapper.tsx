@@ -32,26 +32,6 @@ const MarkdownWrapper = styled(ReactMarkdown)`
     }
   }
 
-  ol {
-    margin-left: 36px;
-    margin-bottom: 18px;
-
-    & > li {
-      counter-increment: li;
-
-      &::before {
-        position: absolute;
-        margin-left: -24px;
-        content: counter(li) '.';
-        font-weight: 700;
-      }
-
-      & p {
-        margin: 8px 0;
-      }
-    }
-  }
-
   & li {
     font-size: 1em;
     line-height: 2;
