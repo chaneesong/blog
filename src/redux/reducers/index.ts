@@ -7,7 +7,13 @@ import { fetchTagsReducer } from '../features/fetchTag/fetchTagSlice';
 import { fetchPostsOfCategoryReducer } from '../features/fetchPostsOfCategory/fetchPostsOfCategorySlice';
 import { fetchPostsOfTagReducer } from '../features/fetchPostsOfTag/fetchPostsOfTagSlice';
 import { fetchPostsReducer } from '../features/fetchPosts/fetchPostsSlice';
-import { posterReducer } from '../features/posterSlice/posterSlice';
+import { posterReducer } from '../features/fetchPost/posterSlice';
+import axios from 'axios';
+
+const backURL = '127.0.0.1:3030';
+
+axios.defaults.baseURL = `http://${backURL}`;
+axios.defaults.withCredentials = true;
 
 const combinedReducer = combineReducers({
   recentPostCards: fetchRecentPostsReducer,
