@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import TOCContainer from './TOCComponents/TOCContainer';
 import TOCElement from './TOCComponents/TOCElement';
+import { useAppSelector } from '@/redux/hooks/reduxHooks';
 
 interface HeadingInfo {
   text: string | null;
@@ -10,6 +11,7 @@ interface HeadingInfo {
 const DEFAULT_HEIGHT = 50;
 
 const TOC = () => {
+  const isFullfilled = useAppSelector((state) => !state.poster.loading);
   const [headingList, setHeadingList] = useState([] as HeadingInfo[]);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ const TOC = () => {
         }
       )
     );
-  }, []);
+  }, [isFullfilled]);
 
   const onClickTOC = useCallback(
     (id: string) => () => {
