@@ -11,7 +11,7 @@ interface HeadingInfo {
 const DEFAULT_HEIGHT = 50;
 
 const TOC = () => {
-  const isFullfilled = useAppSelector((state) => !state.poster.loading);
+  const isFulfilled = useAppSelector((state) => !state.poster.loading);
   const [headingList, setHeadingList] = useState([] as HeadingInfo[]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const TOC = () => {
         }
       )
     );
-  }, [isFullfilled]);
+  }, [isFulfilled]);
 
   const onClickTOC = useCallback(
     (id: string) => () => {
