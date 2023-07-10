@@ -11,7 +11,7 @@ const PostList = () => {
 
   useEffect(() => {
     dispatch(fetchPostsThunk());
-  }, [dispatch]);
+  }, []);
 
   const { postCards, miniPostCards } = separateLayers(posts);
 

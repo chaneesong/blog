@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card';
 import RemoveMarkdown from 'remove-markdown';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { setPost } from '@/redux/features/posterSlice/posterSlice';
 import CardBody from './components/CardBody';
 import CardTitle from './components/CardTitle';
 import CardContent from './components/CardContent';
@@ -25,14 +24,8 @@ const MiniPostCard = ({ post }: PostProps) => {
     [post.content]
   ).slice(0, 100);
 
-  const dispatch = useDispatch();
-
-  const handleSetPost = () => {
-    dispatch(setPost({ ...post }));
-  };
-
   return (
-    <StyledLink href={`/post/${post.id}`} onClick={handleSetPost}>
+    <StyledLink href={`/post/${post.id}`}>
       <CardContainer>
         <Card.Img src={post.image} />
         <CardBody>
