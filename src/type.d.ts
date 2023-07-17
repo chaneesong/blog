@@ -9,5 +9,4 @@ interface Post {
   createdAt: string;
   category: Category;
   tags: Tag[];
-  image?: string;
 }
