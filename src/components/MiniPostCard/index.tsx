@@ -27,7 +27,7 @@ const MiniPostCard = ({ post }: PostProps) => {
   return (
     <StyledLink href={`/post/${post.id}`}>
       <CardContainer>
-        {/* <Card.Img src={post.image} /> */}
+        <Card.Img src="/images/Forest1.png" />
         <CardBody>
           <CardTitle>{post.title}</CardTitle>
           <CardContent>{contentPreview}</CardContent>
