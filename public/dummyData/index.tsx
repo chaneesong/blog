@@ -77,7 +77,7 @@ describe("groupAnagrams", () => {
     category: 'javascript',
     tags: ['tag1', 'tag2', 'tag3'],
     createdAt,
-    image: '/images/preview.png',
+    // image: '/images/preview.png',
   },
   {
     id: 2,
@@ -174,6 +174,6 @@ describe(' description', () => {
     category: 'test',
     tags: ['tag1', 'tag2', 'tag3'],
     createdAt,
-    image: '/images/preview.png',
+    // image: '/images/preview.png',
   },
 ];

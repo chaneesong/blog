@@ -9,7 +9,7 @@ interface Post {
   createdAt: string;
   category: Category;
   tags: Tag[];
-  image?: string;
+  // image?: string;
 }
 
 interface PostTitleProp {

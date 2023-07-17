@@ -13,7 +13,7 @@ const Post = () => {
   const { id } = router.query;
   const dispatch = useAppDispatch();
   const postData = useAppSelector((state) => state.poster.data);
-  const { content, image, ...title } = postData;
+  const { content, ...title } = postData; // TODO 이미지 변수 임시 제거
   const titleElement: PostTitleProp = { ...title };
 
   useEffect(() => {
