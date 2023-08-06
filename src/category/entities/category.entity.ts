@@ -1,8 +1,10 @@
+import { Post } from 'src/posts/entities/post.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -23,4 +25,7 @@ export class Category {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Post, (post) => post.category)
+  post: Post[];
 }
