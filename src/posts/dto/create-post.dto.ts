@@ -1,4 +1,4 @@
-import { IsArray, IsDateString, IsString } from 'class-validator';
+import { IsArray, IsString } from 'class-validator';
 
 export class CreatePostDto {
   @IsString()
@@ -6,9 +6,6 @@ export class CreatePostDto {
 
   @IsString()
   readonly content: string;
-
-  @IsDateString()
-  readonly createdAt: Date;
 
   @IsString()
   readonly category: string;
