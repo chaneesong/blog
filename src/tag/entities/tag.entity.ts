@@ -7,13 +7,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'tags' })
 export class Tag {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  tag: string;
+  keyword: string;
 
   @CreateDateColumn()
   createdAt: Date;
