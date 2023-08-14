@@ -13,32 +13,35 @@ export class TagService {
   ) {}
 
   async create(createTagDto: CreateTagDto) {
-    const { tags } = createTagDto;
-    const result: string[] = [];
+    const { keyword } = createTagDto;
 
-    for (const tag of tags) {
-      let existingTag = await this.tagRepository.findOne({ where: { tag } });
+    const existingTag = await this.findOneByKeyword(keyword);
 
-      if (!existingTag) {
-        const newTag = this.tagRepository.create({ tag });
-        existingTag = await this.tagRepository.save(newTag);
-      }
-
-      result.push(existingTag.id);
+    if (existingTag) {
+      return existingTag;
     }
-    return result;
+
+    const newTag = this.tagRepository.create({ keyword });
+    await this.tagRepository.save(newTag);
+
+    return newTag;
   }
 
-  findAll() {
-    return `This action returns all tag`;
+  async findAll() {
+    return await this.tagRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tag`;
+  async findOneById(id: string) {
+    return await this.tagRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateTagDto: UpdateTagDto) {
-    return `This action updates a #${id} tag`;
+  async findOneByKeyword(keyword: string) {
+    return await this.tagRepository.findOne({ where: { keyword } });
+  }
+
+  update(updateTagDto: UpdateTagDto) {
+    const { keyword } = updateTagDto;
+    const existingTag = this.findOneByKeyword(keyword);
   }
 
   remove(id: number) {
