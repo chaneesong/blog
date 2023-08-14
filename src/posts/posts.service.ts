@@ -22,11 +22,11 @@ export class PostsService {
     const category = await this.categoryService.create({
       category: inputCategory,
     });
-    const tags = await this.tagService.create({ tags: inputTags });
-
-    const existingPost = await this.postRepository.findOne({
-      where: { title: post.title },
-    });
+    const tagsPromise = inputTags.map((keyword) =>
+      this.tagService.create({ keyword }),
+    );
+    const tags = await Promise.all(tagsPromise);
+    const existingPost = await this.findOneByTitle(post.title);
 
     if (existingPost) {
       return existingPost;
@@ -45,19 +45,20 @@ export class PostsService {
     return dummyPostData;
   }
 
-  findOne(id: number) {
-    // TODO 추후 DB 연결 예정
-    const dummyPostDataIds = dummyPostData.map((post) => post.id);
-    const postId = dummyPostDataIds.find((PostId) => PostId === id);
+  async findOneById(id: number) {
+    return await this.postRepository.findOneBy({ id });
+  }
 
-    if (postId == null) {
-      throw new Error('No posts match id.');
-    }
-
-    return dummyPostData[id - 1];
+  async findOneByTitle(title: string) {
+    return await this.postRepository.findOne({ where: { title } });
   }
 
   update(title: string, updatePostDto: UpdatePostDto) {
+    const {
+      category: updateCategory,
+      tags: updateTags,
+      ...post
+    } = updatePostDto;
     return `This action updates a #${title} post`;
   }
 
