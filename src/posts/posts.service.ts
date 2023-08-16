@@ -18,7 +18,11 @@ export class PostsService {
   ) {}
 
   async create(createPostDto: CreatePostDto) {
-    const { category: inputCategory, tags: inputTags, ...post } = createPostDto;
+    const {
+      category: inputCategory,
+      tags: inputTags,
+      ...inputPost
+    } = createPostDto;
     const category = await this.categoryService.create({
       category: inputCategory,
     });
@@ -26,16 +30,16 @@ export class PostsService {
       this.tagService.create({ keyword }),
     );
     const tags = await Promise.all(tagsPromise);
-    const existingPost = await this.findOneByTitle(post.title);
+    const existingPost = await this.findOneByTitle(inputPost.title);
 
     if (existingPost) {
       return existingPost;
     }
 
-    const newPost = this.postRepository.create(post);
+    const post = this.postRepository.create(inputPost);
 
     return await this.postRepository.save({
-      ...newPost,
+      ...post,
       category,
       tags,
     });
