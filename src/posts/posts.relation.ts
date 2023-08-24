@@ -12,7 +12,7 @@ export class PostsRelation {
       this.tagService.create({ keyword }),
     );
 
-    const tags = Promise.all(tagsPromise);
+    const tags = await Promise.all(tagsPromise);
 
     return tags;
   }
