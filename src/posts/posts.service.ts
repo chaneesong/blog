@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Post } from './entities/post.entity';
 import { CategoryService } from 'src/category/category.service';
-import { TagService } from 'src/tag/tag.service';
+import { PostsRelation } from './posts.relation';
 
 @Injectable()
 export class PostsService {
@@ -14,7 +14,7 @@ export class PostsService {
     @InjectRepository(Post)
     private readonly postRepository: Repository<Post>,
     private readonly categoryService: CategoryService,
-    private readonly tagService: TagService,
+    private readonly postsRelation: PostsRelation,
   ) {}
 
   async create(createPostDto: CreatePostDto) {
@@ -23,26 +23,21 @@ export class PostsService {
       tags: inputTags,
       ...inputPost
     } = createPostDto;
-    const category = await this.categoryService.create({
-      category: inputCategory,
-    });
-    const tagsPromise = inputTags.map((keyword) =>
-      this.tagService.create({ keyword }),
-    );
-    const tags = await Promise.all(tagsPromise);
     const existingPost = await this.findOneByTitle(inputPost.title);
 
     if (existingPost) {
       return existingPost;
     }
 
-    const post = this.postRepository.create(inputPost);
-
-    return await this.postRepository.save({
-      ...post,
-      category,
-      tags,
+    const category = await this.categoryService.create({
+      category: inputCategory,
     });
+    const tags = await this.postsRelation.createPostTags(inputTags);
+
+    const post = this.postRepository.create({ ...inputPost, category, tags });
+
+    const result = await this.postRepository.save(post);
+    return result;
   }
 
   findAll() {
@@ -50,23 +45,30 @@ export class PostsService {
   }
 
   async findOneById(id: number) {
-    return await this.postRepository.findOneBy({ id });
+    return await this.postRepository.findOne({
+      where: { id },
+      relations: ['category', 'tags'],
+    });
   }
 
   async findOneByTitle(title: string) {
-    return await this.postRepository.findOne({ where: { title } });
+    return await this.postRepository.findOne({
+      where: { title },
+      relations: ['category', 'tags'],
+    });
   }
 
-  update(title: string, updatePostDto: UpdatePostDto) {
+  async update(id: number, updatePostDto: UpdatePostDto) {
     const {
-      category: updateCategory,
-      tags: updateTags,
-      ...post
+      category: updatedCategory,
+      tags: updatedTags,
+      ...updatedPost
     } = updatePostDto;
-    return `This action updates a #${title} post`;
+
+    return `This action updates a #${id} post`;
   }
 
-  remove(title: string) {
-    return `This action removes a #${title} post`;
+  remove(id: number) {
+    return `This action removes a #${id} post`;
   }
 }

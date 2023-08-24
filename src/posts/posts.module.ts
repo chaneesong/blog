@@ -7,6 +7,7 @@ import { Category } from 'src/category/entities/category.entity';
 import { Tag } from 'src/tag/entities/tag.entity';
 import { CategoryService } from 'src/category/category.service';
 import { TagService } from 'src/tag/tag.service';
+import { PostsRelation } from './posts.relation';
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { TagService } from 'src/tag/tag.service';
     ]),
   ],
   controllers: [PostsController],
-  providers: [PostsService, CategoryService, TagService],
+  providers: [PostsService, CategoryService, TagService, PostsRelation],
 })
 export class PostsModule {}
