@@ -15,7 +15,7 @@ export class Category {
   id: string;
 
   @Column()
-  category: string;
+  keyword: string;
 
   @CreateDateColumn()
   createdAt: Date;

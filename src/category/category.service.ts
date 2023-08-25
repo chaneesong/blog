@@ -13,32 +13,39 @@ export class CategoryService {
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto) {
-    const { category } = createCategoryDto;
+    const { category: keyword } = createCategoryDto;
     const existedCategory = await this.categoryRepository.findOneBy({
-      category,
+      keyword,
     });
 
     if (existedCategory) {
       return existedCategory;
     }
 
-    const newCategory = this.categoryRepository.create({ category });
-    return await this.categoryRepository.save(newCategory);
+    const newCategory = this.categoryRepository.create({ keyword });
+    await this.categoryRepository.save(newCategory);
+    return newCategory;
   }
 
-  findAll() {
+  async findAll() {
     return `This action returns all category`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
+  async findOneById(id: string) {
+    return await this.categoryRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
+  async findOneByKeyword(keyword: string) {
+    return await this.categoryRepository.findOne({
+      where: { keyword },
+    });
+  }
+
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
     return `This action updates a #${id} category`;
   }
 
-  remove(id: number) {
+  async remove(id: string) {
     return `This action removes a #${id} category`;
   }
 }
