@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -45,7 +45,25 @@ export class CategoryService {
     return `This action updates a #${id} category`;
   }
 
+  // TODO 삭제되지 않는 경우 예외처리로 변경 예정
   async remove(id: string) {
-    return `This action removes a #${id} category`;
+    const postOfCategory = await this.categoryRepository.findOne({
+      where: { id },
+      relations: ['post'],
+    });
+
+    if (postOfCategory.post.length) {
+      return `You cannot delete it because there are related data.`;
+    }
+
+    const categoryToDelete = await this.categoryRepository.delete({
+      id: postOfCategory.id,
+    });
+
+    if (!categoryToDelete.affected) {
+      return `The data was not deleted.`;
+    }
+
+    return `Data deleted successfully.`;
   }
 }
