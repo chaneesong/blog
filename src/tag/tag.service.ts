@@ -40,11 +40,25 @@ export class TagService {
   }
 
   update(updateTagDto: UpdateTagDto) {
-    const { keyword } = updateTagDto;
-    const existingTag = this.findOneByKeyword(keyword);
+    return `This action updates a #${updateTagDto.prevTag} tag`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tag`;
+  async remove(id: string): Promise<string> {
+    const postOfTag = await this.tagRepository.findOne({
+      where: { id },
+      relations: ['posts'],
+    });
+
+    if (postOfTag.posts.length) {
+      return `You cannot delete it because there are related data.`;
+    }
+
+    const tagToDelete = await this.tagRepository.delete({ id });
+
+    if (!tagToDelete.affected) {
+      return `The data was not deleted.`;
+    }
+
+    return `${id} tag deleted successfully.`;
   }
 }

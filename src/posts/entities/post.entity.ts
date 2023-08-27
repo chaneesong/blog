@@ -35,7 +35,7 @@ export class Post {
   @ManyToOne(() => Category, (category) => category.post)
   category: Category;
 
-  @ManyToMany(() => Tag)
+  @ManyToMany(() => Tag, (tag) => tag.posts)
   @JoinTable()
   tags: Tag[];
 }
