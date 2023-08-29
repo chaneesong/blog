@@ -39,11 +39,11 @@ export class TagService {
     return await this.tagRepository.findOne({ where: { keyword } });
   }
 
-  update(updateTagDto: UpdateTagDto) {
-    return `This action updates a #${updateTagDto.prevTag} tag`;
+  update(id: string, updateTagDto: UpdateTagDto) {
+    return `This action updates a #${id} tag`;
   }
 
-  async remove(id: string): Promise<string> {
+  async removeById(id: string): Promise<string> {
     const postOfTag = await this.tagRepository.findOne({
       where: { id },
       relations: ['posts'],
@@ -60,5 +60,24 @@ export class TagService {
     }
 
     return `${id} tag deleted successfully.`;
+  }
+
+  async removeByKeyword(keyword: string): Promise<string> {
+    const postOfTag = await this.tagRepository.findOne({
+      where: { keyword },
+      relations: ['posts'],
+    });
+
+    if (postOfTag.posts.length) {
+      return `You cannot delete it because there are related data.`;
+    }
+
+    const tagToDelete = await this.tagRepository.delete({ keyword });
+
+    if (!tagToDelete.affected) {
+      return `The data was not deleted.`;
+    }
+
+    return `${keyword} tag deleted successfully.`;
   }
 }
