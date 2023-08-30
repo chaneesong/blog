@@ -59,15 +59,52 @@ export class PostsService {
 
   async update(id: number, updatePostDto: UpdatePostDto) {
     const {
-      category: updatedCategory,
-      tags: updatedTags,
-      ...updatedPost
-    } = updatePostDto;
+      inputCategory,
+      inputTags,
+      inputPost,
+      prevCategory,
+      prevTags,
+      prevPost,
+    } = await this.convertUpdatePostDto(updatePostDto);
 
-    return `This action updates a #${id} post`;
+    const category = await this.postsRelation.updatePostCategory({
+      post: prevPost,
+      prevCategory: prevCategory.id,
+      newCategory: inputCategory,
+    });
+
+    const prevTagKeywords = prevTags.map((prevTag) => prevTag.keyword);
+
+    const tags = await this.postsRelation.updatePostTags({
+      post: prevPost,
+      prevTags: prevTagKeywords,
+      newTags: inputTags,
+    });
+
+    return await this.postRepository.save({ ...inputPost, category, tags });
   }
 
   remove(id: number) {
     return `This action removes a #${id} post`;
+  }
+  private async convertUpdatePostDto(updatePostDto: UpdatePostDto) {
+    const {
+      category: inputCategory,
+      tags: inputTags,
+      ...inputPost
+    } = updatePostDto;
+    const {
+      category: prevCategory,
+      tags: prevTags,
+      ...prevPost
+    } = await this.findOneById(updatePostDto.id);
+    return {
+      inputCategory,
+      inputTags,
+      inputPost,
+      prevCategory,
+      prevTags,
+      prevPost,
+    };
   }
 }
