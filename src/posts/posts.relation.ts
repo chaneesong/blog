@@ -46,14 +46,31 @@ export class PostsRelation {
     const result = await this.categoryService.create({
       category: newCategory,
     });
-
     await this.postRepository.save({ ...post, category: result });
     await this.categoryService.remove(prevCategory);
     return result;
   }
 
   async updatePostTags(updatedPostTags: UpdatePostTags) {
-    const { prevTags, newTags } = updatedPostTags;
-    return `This action updates ${newTags} of post`;
+    const { prevTags, newTags: newTagsKeywords, post } = updatedPostTags;
+
+    const newTagsPromise = newTagsKeywords.map((keyword) => {
+      const index = prevTags.findIndex((element) => element === keyword);
+      if (index === -1) {
+        return this.tagService.create({ keyword });
+      }
+      const result = this.tagService.findOneByKeyword(prevTags[index]);
+      prevTags.splice(index, 1);
+      return result;
+    });
+
+    const result = await Promise.all(newTagsPromise);
+
+    await this.postRepository.save({ ...post, tags: result });
+    const tagsToDelete = prevTags.map((keyword) =>
+      this.tagService.removeByKeyword(keyword),
+    );
+    await Promise.all(tagsToDelete);
+    return result;
   }
 }
