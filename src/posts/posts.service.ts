@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { dummyPostData } from 'src/dummyData';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -40,8 +39,8 @@ export class PostsService {
     return result;
   }
 
-  findAll() {
-    return dummyPostData;
+  async findAll() {
+    return await this.postRepository.find({ relations: ['category', 'tags'] });
   }
 
   async findOneById(id: number) {
