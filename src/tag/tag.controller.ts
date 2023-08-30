@@ -17,6 +17,6 @@ export class TagController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.tagService.remove(id);
+    return this.tagService.removeById(id);
   }
 }

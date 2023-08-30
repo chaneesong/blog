@@ -62,6 +62,6 @@ export class CategoryService {
       return `The data was not deleted.`;
     }
 
-    return `Data deleted successfully.`;
+    return `${id} category deleted successfully.`;
   }
 }
