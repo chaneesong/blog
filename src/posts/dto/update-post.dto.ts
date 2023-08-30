@@ -1,4 +1,9 @@
-import { PartialType } from '@nestjs/mapped-types';
 import { CreatePostDto } from './create-post.dto';
+import { IsNumber } from 'class-validator';
+import { Type } from 'class-transformer';
 
-export class UpdatePostDto extends PartialType(CreatePostDto) {}
+export class UpdatePostDto extends CreatePostDto {
+  @IsNumber()
+  @Type(() => Number)
+  readonly id: number;
+}
