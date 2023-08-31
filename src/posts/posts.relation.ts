@@ -4,6 +4,8 @@ import { TagService } from 'src/tag/tag.service';
 import { Post } from './entities/post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UpdatePostCategory } from './interface/update-post-category.interface';
+import { UpdatePostTags } from './interface/update-post-tags.interface';
 
 @Injectable()
 export class PostsRelation {
@@ -60,5 +62,13 @@ export class PostsRelation {
     );
     await Promise.all(tagsToDelete);
     return result;
+  }
+
+  async removePostTags(tagIds: string[]) {
+    const tagsToDeletePromise = tagIds.map((id) =>
+      this.tagService.removeById(id),
+    );
+
+    return await Promise.all(tagsToDeletePromise);
   }
 }

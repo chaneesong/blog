@@ -84,9 +84,17 @@ export class PostsService {
     return await this.postRepository.save({ ...inputPost, category, tags });
   }
 
-  remove(id: number) {
+  async remove(id: number) {
+    const { category, tags } = await this.findOneById(id);
+
+    await this.categoryService.remove(category.id);
+    const tagIds = tags.map((tag) => tag.id);
+    await this.postsRelation.removePostTags(tagIds);
+    await this.postRepository.delete(id);
+
     return `This action removes a #${id} post`;
   }
+
   private async convertUpdatePostDto(updatePostDto: UpdatePostDto) {
     const {
       category: inputCategory,
