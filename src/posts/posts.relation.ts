@@ -5,18 +5,6 @@ import { Post } from './entities/post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-interface UpdatePostCategory {
-  post: Omit<Post, 'category' | 'tags'>;
-  prevCategory: string;
-  newCategory: string;
-}
-
-interface UpdatePostTags {
-  post: Omit<Post, 'category' | 'tags'>;
-  prevTags: string[];
-  newTags: string[];
-}
-
 @Injectable()
 export class PostsRelation {
   constructor(
