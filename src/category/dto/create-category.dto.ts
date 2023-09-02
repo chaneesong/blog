@@ -1,6 +1,7 @@
-import { IsString } from 'class-validator';
+import { IsString, MinLength } from 'class-validator';
 
 export class CreateCategoryDto {
   @IsString()
-  category: string;
+  @MinLength(1)
+  keyword: string;
 }
