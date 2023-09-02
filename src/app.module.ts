@@ -1,13 +1,18 @@
-import 'dotenv/config';
 import { Module } from '@nestjs/common';
+import { validationSchema } from './config/validationSchema';
 import { PostsModule } from './posts/posts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoryModule } from './category/category.module';
 import { TagModule } from './tag/tag.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    PostsModule,
+    ConfigModule.forRoot({
+      envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
+      isGlobal: true,
+      validationSchema,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DATABASE_HOST,
@@ -20,6 +25,7 @@ import { TagModule } from './tag/tag.module';
       synchronize: process.env.DEVELOPMENT === 'true',
       verboseRetryLog: process.env.DEVELOPMENT === 'true',
     }),
+    PostsModule,
     CategoryModule,
     TagModule,
   ],
