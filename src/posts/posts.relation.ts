@@ -34,7 +34,7 @@ export class PostsRelation {
     }
 
     const result = await this.categoryService.create({
-      category: newCategory,
+      keyword: newCategory,
     });
     await this.postRepository.save({ ...post, category: result });
     await this.categoryService.remove(prevCategory);

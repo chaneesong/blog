@@ -13,7 +13,7 @@ export class CategoryService {
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto) {
-    const { category: keyword } = createCategoryDto;
+    const { keyword: keyword } = createCategoryDto;
     const existedCategory = await this.categoryRepository.findOneBy({
       keyword,
     });

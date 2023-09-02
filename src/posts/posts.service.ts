@@ -29,7 +29,7 @@ export class PostsService {
     }
 
     const category = await this.categoryService.create({
-      category: inputCategory,
+      keyword: inputCategory,
     });
     const tags = await this.postsRelation.createPostTags(inputTags);
 
