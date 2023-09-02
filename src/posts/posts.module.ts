@@ -5,9 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Post } from './entities/post.entity';
 import { Category } from 'src/category/entities/category.entity';
 import { Tag } from 'src/tag/entities/tag.entity';
-import { CategoryService } from 'src/category/category.service';
-import { TagService } from 'src/tag/tag.service';
 import { PostsRelation } from './posts.relation';
+import { CategoryModule } from 'src/category/category.module';
+import { TagModule } from 'src/tag/tag.module';
 
 @Module({
   imports: [
@@ -16,8 +16,10 @@ import { PostsRelation } from './posts.relation';
       Category,
       Tag,
     ]),
+    CategoryModule,
+    TagModule,
   ],
   controllers: [PostsController],
-  providers: [PostsService, CategoryService, TagService, PostsRelation],
+  providers: [PostsService, PostsRelation],
 })
 export class PostsModule {}
