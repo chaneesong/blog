@@ -6,6 +6,8 @@ import { CategoryModule } from './category/category.module';
 import { TagModule } from './tag/tag.module';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
+import { PostsController } from './posts/posts.controller';
+import { ExceptionModule } from './exception/exception.module';
 
 @Module({
   imports: [
@@ -29,6 +31,7 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
     PostsModule,
     CategoryModule,
     TagModule,
+    ExceptionModule,
   ],
   controllers: [],
   providers: [],
