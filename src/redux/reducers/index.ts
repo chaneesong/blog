@@ -10,10 +10,11 @@ import { fetchPostsReducer } from '../features/fetchPosts/fetchPostsSlice';
 import { posterReducer } from '../features/fetchPost/posterSlice';
 import axios from 'axios';
 
-const backURL = '127.0.0.1:3030';
+const backURL = '5f72-121-140-99-172.ngrok-free.app';
 
-axios.defaults.baseURL = `http://${backURL}`;
+axios.defaults.baseURL = `https://${backURL}`;
 axios.defaults.withCredentials = true;
+axios.defaults.headers.common['ngrok-skip-browser-warning'] = true;
 
 const combinedReducer = combineReducers({
   recentPostCards: fetchRecentPostsReducer,
