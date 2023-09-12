@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 

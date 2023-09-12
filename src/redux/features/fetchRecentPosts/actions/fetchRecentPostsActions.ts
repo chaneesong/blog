@@ -1,9 +1,9 @@
-import { dummyPostData } from '../../../../../public/dummyData';
+import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchRecentPosts = async (): Promise<any> => {
-  // TODO 최근 게시글에 대한 비동기 요청 작성 예정
-  return dummyPostData;
+  const response = axios.get('/posts');
+  return response;
 };
 
 export const fetchRecentPostsThunk = createAsyncThunk(
@@ -11,7 +11,7 @@ export const fetchRecentPostsThunk = createAsyncThunk(
   async () => {
     try {
       const response = await fetchRecentPosts();
-      return response;
+      return response.data;
     } catch (error) {
       throw new Error('Failed to fetch recent posts.');
     }

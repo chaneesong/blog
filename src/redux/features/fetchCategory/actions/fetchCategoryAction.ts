@@ -1,9 +1,9 @@
-import { categoriesData } from '../../../../../public/dummyData';
+import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchCategory = async (): Promise<any> => {
-  // TODO 카테고리에 대한 비동기 요청 작성 예정
-  return categoriesData;
+  const response = axios.get('category');
+  return response;
 };
 
 export const fetchCategoryThunk = createAsyncThunk(
@@ -11,7 +11,7 @@ export const fetchCategoryThunk = createAsyncThunk(
   async () => {
     try {
       const response = await fetchCategory();
-      return response;
+      return response.data;
     } catch (error) {
       throw new Error('Failed to fetch category.');
     }
