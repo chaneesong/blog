@@ -33,8 +33,6 @@ import { ExceptionModule } from './exception/exception.module';
     TagModule,
     ExceptionModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
