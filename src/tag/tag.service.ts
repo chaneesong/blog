@@ -28,15 +28,21 @@ export class TagService {
   }
 
   async findAll() {
-    return await this.tagRepository.find();
+    return await this.tagRepository.find({ relations: ['posts'] });
   }
 
   async findOneById(id: string) {
-    return await this.tagRepository.findOne({ where: { id } });
+    return await this.tagRepository.findOne({
+      where: { id },
+      relations: ['posts'],
+    });
   }
 
   async findOneByKeyword(keyword: string) {
-    return await this.tagRepository.findOne({ where: { keyword } });
+    return await this.tagRepository.findOne({
+      where: { keyword },
+      relations: ['posts'],
+    });
   }
 
   update(id: string, updateTagDto: UpdateTagDto) {

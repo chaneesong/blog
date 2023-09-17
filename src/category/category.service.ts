@@ -32,12 +32,16 @@ export class CategoryService {
   }
 
   async findOneById(id: string) {
-    return await this.categoryRepository.findOne({ where: { id } });
+    return await this.categoryRepository.findOne({
+      where: { id },
+      relations: ['posts'],
+    });
   }
 
   async findOneByKeyword(keyword: string) {
     return await this.categoryRepository.findOne({
       where: { keyword },
+      relations: ['posts'],
     });
   }
 
