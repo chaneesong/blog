@@ -30,7 +30,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
       response,
       stack,
     };
-
     this.logger.log(log);
 
     res.status((exception as HttpException).getStatus()).json(response);

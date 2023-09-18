@@ -29,7 +29,6 @@ export class CheckIdInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap((data) => {
-        console.log(data);
         return this.logger.log(
           `Response from ${method} ${url} \n response: ${JSON.stringify(data)}`,
         );
