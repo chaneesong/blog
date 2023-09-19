@@ -32,10 +32,22 @@ export class CategoryService {
   }
 
   async findOneById(id: string) {
-    return await this.categoryRepository.findOne({
-      where: { id },
-      relations: ['posts'],
-    });
+    return await this.categoryRepository
+      .createQueryBuilder('category')
+      .leftJoinAndSelect('category.post', 'post')
+      .leftJoinAndSelect('post.tags', 'tag')
+      .where('category.id = :id', { id })
+      .select([
+        'category.id',
+        'category.keyword',
+        'post.id',
+        'post.title',
+        'post.content',
+        'post.createdAt',
+        'tag.id',
+        'tag.keyword',
+      ])
+      .getOne();
   }
 
   async findOneByKeyword(keyword: string) {

@@ -12,8 +12,9 @@ export class CategoryController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.categoryService.findOneById(id);
+  async findOne(@Param('id') id: string) {
+    const result = await this.categoryService.findOneById(id);
+    return result;
   }
 
   @Post()
