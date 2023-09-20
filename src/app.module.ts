@@ -25,8 +25,9 @@ import { ExceptionModule } from './exception/exception.module';
       database: process.env.DATABASE_DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       // 서버가 재시작 할 때 DB를 초기화하는 역할, 프로덕션에서는 false로 변경
-      synchronize: process.env.DEVELOPMENT === 'true',
-      verboseRetryLog: process.env.DEVELOPMENT === 'true',
+      synchronize: process.env.NODE_ENV === 'development',
+      verboseRetryLog: process.env.NODE_ENV === 'development',
+      logging: process.env.NODE_ENV === 'development',
     }),
     PostsModule,
     CategoryModule,
