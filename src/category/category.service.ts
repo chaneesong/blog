@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from './entities/category.entity';
 import { Repository } from 'typeorm';
@@ -57,8 +56,6 @@ export class CategoryService {
     });
   }
 
-  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
   }
 
   // TODO 삭제되지 않는 경우 예외처리로 변경 예정

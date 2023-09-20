@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { TagService } from './tag.service';
 
 @Controller('tag')
@@ -13,10 +13,5 @@ export class TagController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.tagService.findOneById(id);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.tagService.removeById(id);
   }
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTagDto } from './dto/create-tag.dto';
-import { UpdateTagDto } from './dto/update-tag.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Tag } from './entities/tag.entity';
 import { Repository } from 'typeorm';
@@ -43,10 +42,6 @@ export class TagService {
       where: { keyword },
       relations: ['posts'],
     });
-  }
-
-  update(id: string, updateTagDto: UpdateTagDto) {
-    return `This action updates a #${id} tag`;
   }
 
   async removeById(id: string): Promise<string> {
