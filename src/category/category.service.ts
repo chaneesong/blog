@@ -50,12 +50,22 @@ export class CategoryService {
   }
 
   async findOneByKeyword(keyword: string) {
-    return await this.categoryRepository.findOne({
-      where: { keyword },
-      relations: ['posts'],
-    });
-  }
-
+    return await this.categoryRepository
+      .createQueryBuilder('category')
+      .leftJoinAndSelect('category.post', 'post')
+      .leftJoinAndSelect('post.tags', 'tag')
+      .where('category.keyword = :keyword', { keyword })
+      .select([
+        'category.id',
+        'category.keyword',
+        'post.id',
+        'post.title',
+        'post.content',
+        'post.createdAt',
+        'tag.id',
+        'tag.keyword',
+      ])
+      .getOne();
   }
 
   // TODO 삭제되지 않는 경우 예외처리로 변경 예정
