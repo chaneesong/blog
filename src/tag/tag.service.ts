@@ -31,17 +31,41 @@ export class TagService {
   }
 
   async findOneById(id: string) {
-    return await this.tagRepository.findOne({
-      where: { id },
-      relations: ['posts'],
-    });
+    return await this.tagRepository
+      .createQueryBuilder('tag')
+      .leftJoinAndSelect('tag.posts', 'post')
+      .leftJoinAndSelect('post.category', 'category')
+      .where('tag.id = :id', { id })
+      .select([
+        'tag.id',
+        'tag.keyword',
+        'post.id',
+        'post.title',
+        'post.content',
+        'post.createdAt',
+        'category.id',
+        'category.keyword',
+      ])
+      .getOne();
   }
 
   async findOneByKeyword(keyword: string) {
-    return await this.tagRepository.findOne({
-      where: { keyword },
-      relations: ['posts'],
-    });
+    return await this.tagRepository
+      .createQueryBuilder('tag')
+      .leftJoinAndSelect('tag.posts', 'post')
+      .leftJoinAndSelect('post.category', 'category')
+      .where('tag.keyword = :keyowrd', { keyword })
+      .select([
+        'tag.id',
+        'tag.keyword',
+        'post.id',
+        'post.title',
+        'post.content',
+        'post.createdAt',
+        'category.id',
+        'category.keyword',
+      ])
+      .getOne();
   }
 
   async removeById(id: string): Promise<string> {
