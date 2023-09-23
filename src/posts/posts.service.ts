@@ -40,21 +40,59 @@ export class PostsService {
   }
 
   async findAll() {
-    return await this.postRepository.find({ relations: ['category', 'tags'] });
+    return await this.postRepository
+      .createQueryBuilder('post')
+      .leftJoinAndSelect('post.category', 'category')
+      .leftJoinAndSelect('post.tags', 'tag')
+      .select([
+        'post.id',
+        'post.title',
+        'post.content',
+        'post.createdAt',
+        'category.id',
+        'category.keyword',
+        'tag.id',
+        'tag.keyword',
+      ])
+      .getMany();
   }
 
   async findOneById(id: number) {
-    return await this.postRepository.findOne({
-      where: { id },
-      relations: ['category', 'tags'],
-    });
+    return await this.postRepository
+      .createQueryBuilder('post')
+      .leftJoinAndSelect('post.category', 'category')
+      .leftJoinAndSelect('post.tags', 'tag')
+      .where('post.id =:id', { id })
+      .select([
+        'post.id',
+        'post.title',
+        'post.content',
+        'post.createdAt',
+        'category.id',
+        'category.keyword',
+        'tag.id',
+        'tag.keyword',
+      ])
+      .getOne();
   }
 
   async findOneByTitle(title: string) {
-    return await this.postRepository.findOne({
-      where: { title },
-      relations: ['category', 'tags'],
-    });
+    return await this.postRepository
+      .createQueryBuilder('post')
+      .leftJoinAndSelect('post.category', 'category')
+      .leftJoinAndSelect('post.tags', 'tag')
+      .where('post.id =:id', { title })
+      .select([
+        'post.id',
+        'post.title',
+        'post.content',
+        'post.createdAt',
+        'category.id',
+        'category.keyword',
+        'tag.id',
+        'tag.keyword',
+      ])
+      .getOne();
   }
 
   async update(id: number, updatePostDto: UpdatePostDto) {
