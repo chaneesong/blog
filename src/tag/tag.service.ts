@@ -54,7 +54,7 @@ export class TagService {
       .createQueryBuilder('tag')
       .leftJoinAndSelect('tag.posts', 'post')
       .leftJoinAndSelect('post.category', 'category')
-      .where('tag.keyword = :keyowrd', { keyword })
+      .where('tag.keyword = :keyword', { keyword })
       .select([
         'tag.id',
         'tag.keyword',
