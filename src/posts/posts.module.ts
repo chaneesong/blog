@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { PostsController } from './posts.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -20,6 +20,10 @@ import { TagModule } from 'src/tag/tag.module';
     TagModule,
   ],
   controllers: [PostsController],
-  providers: [PostsService, PostsRelation],
+  providers: [
+    PostsService, //
+    PostsRelation,
+    Logger,
+  ],
 })
 export class PostsModule {}
