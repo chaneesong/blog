@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { Post } from './entities/post.entity';
 import { CategoryService } from 'src/category/category.service';
 import { PostsRelation } from './posts.relation';
+import { ConvertUpdatePostDto } from './interface/convert-post.interface';
 
 @Injectable()
 export class PostsService {
@@ -81,7 +82,7 @@ export class PostsService {
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.category', 'category')
       .leftJoinAndSelect('post.tags', 'tag')
-      .where('post.id =:id', { title })
+      .where('post.title =:title', { title })
       .select([
         'post.id',
         'post.title',
@@ -95,7 +96,7 @@ export class PostsService {
       .getOne();
   }
 
-  async update(id: number, updatePostDto: UpdatePostDto) {
+  async update(updatePostDto: UpdatePostDto): Promise<Post> {
     const {
       inputCategory,
       inputTags,
@@ -106,7 +107,7 @@ export class PostsService {
     } = await this.convertUpdatePostDto(updatePostDto);
 
     const category = await this.postsRelation.updatePostCategory({
-      post: prevPost,
+      post: prevPost as Post,
       prevCategory: prevCategory.id,
       newCategory: inputCategory,
     });
@@ -114,7 +115,7 @@ export class PostsService {
     const prevTagKeywords = prevTags.map((prevTag) => prevTag.keyword);
 
     const tags = await this.postsRelation.updatePostTags({
-      post: prevPost,
+      post: prevPost as Post,
       prevTags: prevTagKeywords,
       newTags: inputTags,
     });
@@ -125,15 +126,17 @@ export class PostsService {
   async remove(id: number) {
     const { category, tags } = await this.findOneById(id);
 
+    await this.postRepository.delete(id);
     await this.categoryService.remove(category.id);
     const tagIds = tags.map((tag) => tag.id);
     await this.postsRelation.removePostTags(tagIds);
-    await this.postRepository.delete(id);
 
     return `This action removes a #${id} post`;
   }
 
-  private async convertUpdatePostDto(updatePostDto: UpdatePostDto) {
+  private async convertUpdatePostDto(
+    updatePostDto: UpdatePostDto,
+  ): Promise<ConvertUpdatePostDto> {
     const {
       category: inputCategory,
       tags: inputTags,
@@ -143,7 +146,7 @@ export class PostsService {
       category: prevCategory,
       tags: prevTags,
       ...prevPost
-    } = await this.findOneById(updatePostDto.id);
+    } = await this.findOneById(inputPost.id);
     return {
       inputCategory,
       inputTags,
