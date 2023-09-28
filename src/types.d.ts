@@ -1,6 +1,12 @@
-type Category = string;
+type Category = {
+  id: string;
+  keyword: string;
+};
 
-type Tag = string;
+type Tag = {
+  id: string;
+  keyword: string;
+};
 
 interface Post {
   id: number;
@@ -16,8 +22,8 @@ interface Post {
 interface PostTitleProp {
   id: number;
   title: string;
-  category: string;
-  tags: string[];
+  category: Category;
+  tags: Tag[];
   createdAt: string;
 }
 
