@@ -12,9 +12,7 @@ export const initialState: FetchPost = {
     title: '',
     content: '',
     createdAt: '',
-    category: '',
+    category: { id: '', keyword: '' },
     tags: [],
-    // TODO 이미지 변수 임시 제거
-    // image: '',
   },
 };
