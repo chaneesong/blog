@@ -41,7 +41,7 @@ export class PostsService {
   }
 
   async findAll() {
-    const result = await this.postRepository
+    return await this.postRepository
       .createQueryBuilder('post')
       .leftJoinAndSelect('post.category', 'category')
       .leftJoinAndSelect('post.tags', 'tag')
@@ -49,16 +49,13 @@ export class PostsService {
         'post.id',
         'post.title',
         'post.content',
-        `DATE_FORMAT(post.createdAt,'%Y-%m-%d') as post_createdAt`,
+        'post.createdAt',
         'category.id',
         'category.keyword',
-        'group_concat(tag.id) as tag_id',
-        'group_concat(tag.keyword) as tag_keyword',
+        'tag.id',
+        'tag.keyword',
       ])
-      .groupBy('post.id')
-      .getRawMany();
-
-    return result;
+      .getMany();
   }
 
   async findOneById(id: number) {

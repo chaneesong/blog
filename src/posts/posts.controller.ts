@@ -6,10 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
+  NotFoundException,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { CheckIdInterceptor } from 'src/interceptors/posts/check-id.interceptor';
+import { DateTransformInterceptor } from 'src/interceptors/posts/date-transform.interceptor';
 
 @Controller('posts')
 export class PostsController {
@@ -23,22 +27,29 @@ export class PostsController {
   }
 
   @Get()
+  @UseInterceptors(DateTransformInterceptor)
   findAll() {
     return this.postsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.postsService.findOneById(+id);
+  @UseInterceptors(CheckIdInterceptor, DateTransformInterceptor)
+  async findOne(@Param('id') id: string) {
+    const result = await this.postsService.findOneById(+id);
+    if (!result) {
+      throw new NotFoundException('게시글을 찾을 수 없습니다.');
+    }
+    return result;
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.postsService.update(+id, updatePostDto);
+    return this.postsService.update(updatePostDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.postsService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const message = await this.postsService.remove(+id);
+    return { message };
   }
 }
