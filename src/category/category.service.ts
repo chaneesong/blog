@@ -66,6 +66,26 @@ export class CategoryService {
         'tag.keyword',
       ])
       .getOne();
+  async findAllPostsOfCategory(keyword: string) {
+    const result = await this.categoryRepository
+      .createQueryBuilder('category')
+      .leftJoinAndSelect('category.post', 'post')
+      .leftJoinAndSelect('post.tags', 'tag')
+      .where('category.keyword = :keyword', { keyword })
+      .select([
+        'GROUP_CONCAT(DISTINCT category.id) AS category_id',
+        'category.keyword',
+        'post.id',
+        'post.title',
+        'post.content',
+        `DATE_FORMAT(post.createdAt, '%Y-%m-%d') AS post_createdAt`,
+        'GROUP_CONCAT(tag.id) AS tag_id',
+        'GROUP_CONCAT(tag.keyword) AS tag_keyword',
+      ])
+      .groupBy('post.id')
+      .getRawMany();
+
+    return result;
   }
 
   // TODO 삭제되지 않는 경우 예외처리로 변경 예정
