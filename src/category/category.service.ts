@@ -66,6 +66,8 @@ export class CategoryService {
         'tag.keyword',
       ])
       .getOne();
+  }
+
   async findAllPostsOfCategory(keyword: string) {
     const result = await this.categoryRepository
       .createQueryBuilder('category')
@@ -79,8 +81,8 @@ export class CategoryService {
         'post.title',
         'post.content',
         `DATE_FORMAT(post.createdAt, '%Y-%m-%d') AS post_createdAt`,
-        'GROUP_CONCAT(tag.id) AS tag_id',
-        'GROUP_CONCAT(tag.keyword) AS tag_keyword',
+        'GROUP_CONCAT(tag.id ORDER BY tag.id) AS tag_id',
+        'GROUP_CONCAT(tag.keyword ORDER BY tag.id) AS tag_keyword',
       ])
       .groupBy('post.id')
       .getRawMany();
