@@ -18,3 +18,14 @@ interface Post {
   category: Category;
   tags: Tag[];
 }
+
+interface PostRawData {
+  post_id: number;
+  post_title: string;
+  post_content: string;
+  post_createdAt: string;
+  category_id: string;
+  category_keyword: string;
+  tag_id: string;
+  tag_keyword: string;
+}
