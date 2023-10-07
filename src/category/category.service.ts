@@ -13,9 +13,7 @@ export class CategoryService {
 
   async create(createCategoryDto: CreateCategoryDto) {
     const { keyword: keyword } = createCategoryDto;
-    const existedCategory = await this.categoryRepository.findOneBy({
-      keyword,
-    });
+    const existedCategory = await this.findOneByKeyword(keyword);
 
     if (existedCategory) {
       return existedCategory;
@@ -33,38 +31,16 @@ export class CategoryService {
   async findOneById(id: string) {
     return await this.categoryRepository
       .createQueryBuilder('category')
-      .leftJoinAndSelect('category.post', 'post')
-      .leftJoinAndSelect('post.tags', 'tag')
       .where('category.id = :id', { id })
-      .select([
-        'category.id',
-        'category.keyword',
-        'post.id',
-        'post.title',
-        'post.content',
-        'post.createdAt',
-        'tag.id',
-        'tag.keyword',
-      ])
+      .select(['category.id', 'category.keyword'])
       .getOne();
   }
 
   async findOneByKeyword(keyword: string) {
     return await this.categoryRepository
       .createQueryBuilder('category')
-      .leftJoinAndSelect('category.post', 'post')
-      .leftJoinAndSelect('post.tags', 'tag')
       .where('category.keyword = :keyword', { keyword })
-      .select([
-        'category.id',
-        'category.keyword',
-        'post.id',
-        'post.title',
-        'post.content',
-        'post.createdAt',
-        'tag.id',
-        'tag.keyword',
-      ])
+      .select(['category.id', 'category.keyword'])
       .getOne();
   }
 
