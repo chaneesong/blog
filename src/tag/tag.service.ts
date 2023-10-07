@@ -50,22 +50,24 @@ export class TagService {
   }
 
   async findOneByKeyword(keyword: string) {
+  async findAllPostsOfTag(keyword: string) {
     return await this.tagRepository
       .createQueryBuilder('tag')
       .leftJoinAndSelect('tag.posts', 'post')
       .leftJoinAndSelect('post.category', 'category')
       .where('tag.keyword = :keyword', { keyword })
       .select([
-        'tag.id',
-        'tag.keyword',
         'post.id',
         'post.title',
         'post.content',
-        'post.createdAt',
-        'category.id',
+        `DATE_FORMAT(post.createdAt, '%Y-%m-%d') AS post_createdAt`,
+        'GROUP_CONCAT(DISTINCT category.id) AS category_id',
         'category.keyword',
+        'GROUP_CONCAT(tag.id ORDER BY tag.id) AS tag_id',
+        'GROUP_CONCAT(tag.keyword ORDER BY tag.id) AS tag_keyword',
       ])
-      .getOne();
+      .groupBy('post.id')
+      .getRawMany();
   }
 
   async removeById(id: string): Promise<string> {
