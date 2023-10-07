@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
 import { TagService } from './tag.service';
+import { PostDataTransformInterceptor } from 'src/interceptors/transform/post-data-transform.interceptor';
 
 @Controller('tag')
 export class TagController {
@@ -10,8 +11,9 @@ export class TagController {
     return this.tagService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tagService.findOneById(id);
+  @Get(':keyword')
+  @UseInterceptors(PostDataTransformInterceptor)
+  findOne(@Param('keyword') keyword: string) {
+    return this.tagService.findAllPostsOfTag(keyword);
   }
 }

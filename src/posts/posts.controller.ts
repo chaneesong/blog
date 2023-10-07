@@ -13,7 +13,7 @@ import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { CheckIdInterceptor } from 'src/interceptors/posts/check-id.interceptor';
-import { DateTransformInterceptor } from 'src/interceptors/posts/date-transform.interceptor';
+import { PostDataTransformInterceptor } from 'src/interceptors/transform/post-data-transform.interceptor';
 
 @Controller('posts')
 export class PostsController {
@@ -27,13 +27,13 @@ export class PostsController {
   }
 
   @Get()
-  @UseInterceptors(DateTransformInterceptor)
+  @UseInterceptors(PostDataTransformInterceptor)
   findAll() {
     return this.postsService.findAll();
   }
 
   @Get(':id')
-  @UseInterceptors(CheckIdInterceptor, DateTransformInterceptor)
+  @UseInterceptors(CheckIdInterceptor)
   async findOne(@Param('id') id: string) {
     const result = await this.postsService.findOneById(+id);
     if (!result) {
