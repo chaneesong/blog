@@ -33,23 +33,19 @@ export class TagService {
   async findOneById(id: string) {
     return await this.tagRepository
       .createQueryBuilder('tag')
-      .leftJoinAndSelect('tag.posts', 'post')
-      .leftJoinAndSelect('post.category', 'category')
       .where('tag.id = :id', { id })
-      .select([
-        'tag.id',
-        'tag.keyword',
-        'post.id',
-        'post.title',
-        'post.content',
-        'post.createdAt',
-        'category.id',
-        'category.keyword',
-      ])
+      .select(['tag.id', 'tag.keyword'])
       .getOne();
   }
 
   async findOneByKeyword(keyword: string) {
+    return await this.tagRepository
+      .createQueryBuilder('tag')
+      .where('tag.keyword = :keyword', { keyword })
+      .select(['tag.id', 'tag.keyword'])
+      .getOne();
+  }
+
   async findAllPostsOfTag(keyword: string) {
     return await this.tagRepository
       .createQueryBuilder('tag')
