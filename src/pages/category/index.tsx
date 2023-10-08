@@ -8,11 +8,14 @@ import Categorization from '@/components/Categorization';
 
 const CategoryList = () => {
   const dispatch = useAppDispatch();
-  const categories = useAppSelector((state) => state.categories.data);
+  const categories = useAppSelector((state) =>
+    state.categories.data.map((data) => data.keyword)
+  );
 
   useEffect(() => {
     dispatch(fetchCategoryThunk());
   }, [dispatch]);
+
   return (
     <>
       <AppLayout>

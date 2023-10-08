@@ -9,7 +9,9 @@ import Categorization from '@/components/Categorization';
 
 const TagList = () => {
   const dispatch = useAppDispatch();
-  const tags = useAppSelector((state) => state.tags.data);
+  const tags = useAppSelector((state) =>
+    state.tags.data.map((data) => data.keyword)
+  );
 
   useEffect(() => {
     dispatch(fetchTagsThunk());

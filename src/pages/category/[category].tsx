@@ -13,8 +13,10 @@ const Category = () => {
   const posts = useAppSelector((state) => state.postsOfCategory.data);
 
   useEffect(() => {
-    dispatch(fetchPostsOfCategoryThunk());
-  }, [dispatch]);
+    if (router.isReady) {
+      dispatch(fetchPostsOfCategoryThunk(category as string));
+    }
+  }, [router.isReady]);
 
   const { postCards, miniPostCards } = separateLayers(posts);
 

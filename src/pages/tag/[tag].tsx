@@ -12,8 +12,10 @@ const Tag = () => {
   const posts = useAppSelector((state) => state.postsOfTag.data);
 
   useEffect(() => {
-    dispatch(fetchPostsOfTagThunk());
-  }, [dispatch]);
+    if (router.isReady) {
+      dispatch(fetchPostsOfTagThunk(tag as string));
+    }
+  }, [router.isReady]);
 
   const { postCards, miniPostCards } = separateLayers(posts);
 
