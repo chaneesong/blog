@@ -29,7 +29,6 @@ export class PostDataTransformInterceptor implements NestInterceptor {
   }
 
   private dataTransform(data: PostRawData): Post {
-    console.log(data);
     return {
       id: data.post_id,
       title: data.post_title,
