@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { dummyPostData } from '../../../../../public/dummyData';
+import axios from 'axios';
 
-const fetchPostsOfTag = async (): Promise<any> => {
-  return dummyPostData;
+const fetchPostsOfTag = async (keyword: string): Promise<any> => {
+  return axios.get(`/tag/${keyword}`);
 };
 
 export const fetchPostsOfTagThunk = createAsyncThunk(
   'tag/fetchPostsOfTag',
-  async () => {
+  async (keyword: string) => {
     try {
-      const response = await fetchPostsOfTag();
-      return response;
+      const response = await fetchPostsOfTag(keyword);
+      return response.data;
     } catch (error) {
       throw new Error('Failed to fetch posts of tag');
     }
