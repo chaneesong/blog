@@ -75,7 +75,7 @@ export class PostsService {
         'tag.id',
         'tag.keyword',
       ])
-      .getOne();
+      .getRawOne();
   }
 
   async findOneByTitle(title: string) {

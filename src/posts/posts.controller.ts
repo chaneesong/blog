@@ -33,6 +33,7 @@ export class PostsController {
   }
 
   @Get(':id')
+  @UseInterceptors(PostDataTransformInterceptor)
   @UseInterceptors(CheckIdInterceptor)
   async findOne(@Param('id') id: string) {
     const result = await this.postsService.findOneById(+id);
