@@ -25,7 +25,7 @@ const MiniPostCard = ({ post }: PostProps) => {
   ).slice(0, 100);
   // TODO 이미지 임시 제거
   return (
-    <StyledLink href={`/post/${post.id}`}>
+    <StyledLink href={`/posts/${post.id}`}>
       <CardContainer>
         <Card.Img src="/images/Forest1.png" />
         <CardBody>

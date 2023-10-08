@@ -13,11 +13,12 @@ const StyledImage = styled(Image)`
   max-height: 100%;
   min-height: 170px;
   min-width: 220px;
+  max-width: 300px;
 `;
 
 const PostCard = ({ post }: PostCardProps) => {
   return (
-    <Link href={`/post/${post.id}`} key={post.id} passHref>
+    <Link href={`/posts/${post.id}`} key={post.id} passHref>
       <PostCardContainer>
         <ContentsContainer post={post} />
         <StyledImage

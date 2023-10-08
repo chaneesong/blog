@@ -9,7 +9,7 @@ const Title = ({ titleProp }: { titleProp: PostTitleProp }) => {
     <TitleContainer>
       <StyledTitle>{title}</StyledTitle>
       <StyledCreatedAt>{createdAt}</StyledCreatedAt>
-      <PostCardTags tags={tags} />
+      <PostCardTags tags={tags.map((tag) => tag.keyword)} />
       <hr />
     </TitleContainer>
   );

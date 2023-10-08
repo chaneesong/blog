@@ -21,7 +21,7 @@ const Navigation = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              {['post', 'Category', 'Tag'].map((element: string) => (
+              {['posts', 'Category', 'Tag'].map((element: string) => (
                 <NavLink key={element} element={element} />
               ))}
             </Nav>

@@ -23,6 +23,7 @@ const AppLayout = ({ children }: ReactNodeProps) => {
         <div style={{ width: '100%', height: '300px' }}>
           <img
             src="/images/flog.png"
+            title="image"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </div>

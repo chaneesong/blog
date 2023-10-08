@@ -14,6 +14,7 @@ interface PostContentProps {
 const StyledContentsContainer = styled.div`
   margin: 10px;
   border: 1px solid white;
+  width: 100%;
 `;
 
 const StyledLastLine = styled.div`
@@ -24,11 +25,11 @@ const StyledLastLine = styled.div`
 const ContentsContainer = ({ post }: PostContentProps) => {
   return (
     <StyledContentsContainer>
-      <CategorySection category={post.category} />
+      <CategorySection category={post.category.keyword} />
       <Title title={post.title} createdAt={post.createdAt} />
       <Content content={post.content} />
       <StyledLastLine>
-        <TagSection tags={post.tags} />
+        <TagSection tags={post.tags.map((tag) => tag.keyword)} />
         <CreatedAt createdAt={post.createdAt} />
       </StyledLastLine>
     </StyledContentsContainer>
