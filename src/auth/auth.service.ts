@@ -10,8 +10,8 @@ export class AuthService {
     this.hash = process.env.USER_HASH;
   }
 
-  async signIn(userId: string, pass: string) {
-    const result = bcrypt.compare(pass, this.hash);
+  async signIn(userId: string, password: string) {
+    const result = bcrypt.compare(password, this.hash);
     if (!result || userId !== this.userId) {
       throw new UnauthorizedException();
     }
