@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { PostsController } from './posts/posts.controller';
 import { ExceptionModule } from './exception/exception.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ExceptionModule } from './exception/exception.module';
     CategoryModule,
     TagModule,
     ExceptionModule,
+    AuthModule,
   ],
 })
 export class AppModule implements NestModule {
