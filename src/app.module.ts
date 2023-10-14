@@ -9,6 +9,7 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { PostsController } from './posts/posts.controller';
 import { ExceptionModule } from './exception/exception.module';
 import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './common/core.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AuthModule } from './auth/auth.module';
       verboseRetryLog: process.env.NODE_ENV === 'development',
       logging: process.env.NODE_ENV === 'development',
     }),
+    CoreModule,
     PostsModule,
     CategoryModule,
     TagModule,
