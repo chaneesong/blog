@@ -13,6 +13,17 @@ const MainContainer = styled.div`
   align-items: flex-start;
 `;
 
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 300px;
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const AppLayout = ({ children }: ReactNodeProps) => {
   const router = useRouter();
   const hasId = router.query.id ?? null;
@@ -20,13 +31,13 @@ const AppLayout = ({ children }: ReactNodeProps) => {
   return (
     <MainContainer className="d-flex flex-column">
       {hasId ? null : (
-        <div style={{ width: '100%', height: '300px' }}>
-          <img
+        <ImageContainer style={{ width: '100%', height: '300px' }}>
+          <Img
             src="/images/flog.png"
             title="image"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
-        </div>
+        </ImageContainer>
       )}
       <Navigation />
       <div className="App flex-grow-1 flex-column">

@@ -5,10 +5,10 @@ const Footer = () => (
   <AppFooter>
     <Container className="container p-4">
       <div>
-        <a href="https://github.com/chaneesong">
+        <a title="github" href="https://github.com/chaneesong">
           <Image src="/images/github-icon.png" alt="github" />
         </a>
-        <a href="mailto:sch102403@gmail.com">
+        <a title="mail" href="mailto:sch102403@gmail.com">
           <Image src="/images/mail.png" alt="mail" />
         </a>
       </div>
