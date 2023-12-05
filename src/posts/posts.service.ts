@@ -69,11 +69,11 @@ export class PostsService {
         'post.id',
         'post.title',
         'post.content',
-        'post.createdAt',
-        'category.id',
+        `DATE_FORMAT(post.createdAt, '%Y-%m-%d') AS post_createdAt`,
+        'GROUP_CONCAT(DISTINCT category.id) AS category_id',
         'category.keyword',
-        'tag.id',
-        'tag.keyword',
+        'GROUP_CONCAT(tag.id ORDER BY tag.id) AS tag_id',
+        'GROUP_CONCAT(tag.keyword ORDER BY tag.id) AS tag_keyword',
       ])
       .getRawOne();
   }
@@ -88,11 +88,11 @@ export class PostsService {
         'post.id',
         'post.title',
         'post.content',
-        'post.createdAt',
-        'category.id',
+        `DATE_FORMAT(post.createdAt, '%Y-%m-%d') AS post_createdAt`,
+        'GROUP_CONCAT(DISTINCT category.id) AS category_id',
         'category.keyword',
-        'tag.id',
-        'tag.keyword',
+        'GROUP_CONCAT(tag.id ORDER BY tag.id) AS tag_id',
+        'GROUP_CONCAT(tag.keyword ORDER BY tag.id) AS tag_keyword',
       ])
       .getOne();
   }
@@ -147,7 +147,6 @@ export class PostsService {
       category: prevCategory,
       tags: prevTags,
       ...prevPost
-    } = await this.findOneById(inputPost.id);
     return {
       inputCategory,
       inputTags,
