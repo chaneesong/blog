@@ -27,7 +27,7 @@ export class PostsRelation {
   }
 
   async updatePostCategory(updatedPostCategory: UpdatePostCategory) {
-    const { prevCategory, newCategory, post } = updatedPostCategory;
+    const { prevCategory, newCategory } = updatedPostCategory;
 
     if (prevCategory === newCategory) {
       return await this.categoryService.findOneByKeyword(prevCategory);
@@ -36,13 +36,12 @@ export class PostsRelation {
     const result = await this.categoryService.create({
       keyword: newCategory,
     });
-    await this.postRepository.save({ ...post, category: result });
     await this.categoryService.remove(prevCategory);
     return result;
   }
 
   async updatePostTags(updatedPostTags: UpdatePostTags) {
-    const { prevTags, newTags: newTagsKeywords, post } = updatedPostTags;
+    const { prevTags, newTags: newTagsKeywords } = updatedPostTags;
 
     const newTagsPromise = newTagsKeywords.map((keyword) => {
       const index = prevTags.findIndex((element) => element === keyword);
@@ -56,7 +55,6 @@ export class PostsRelation {
 
     const result = await Promise.all(newTagsPromise);
 
-    await this.postRepository.save({ ...post, tags: result });
     const tagsToDelete = prevTags.map((keyword) =>
       this.tagService.removeByKeyword(keyword),
     );
