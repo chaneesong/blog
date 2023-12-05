@@ -98,17 +98,10 @@ export class PostsService {
   }
 
   async update(updatePostDto: UpdatePostDto): Promise<Post> {
-    const {
-      inputCategory,
-      inputTags,
-      inputPost,
-      prevCategory,
-      prevTags,
-      prevPost,
-    } = await this.convertUpdatePostDto(updatePostDto);
+    const { inputCategory, inputTags, inputPost, prevCategory, prevTags } =
+      await this.convertUpdatePostDto(updatePostDto);
 
     const category = await this.postsRelation.updatePostCategory({
-      post: prevPost as Post,
       prevCategory: prevCategory.id,
       newCategory: inputCategory,
     });
@@ -116,7 +109,6 @@ export class PostsService {
     const prevTagKeywords = prevTags.map((prevTag) => prevTag.keyword);
 
     const tags = await this.postsRelation.updatePostTags({
-      post: prevPost as Post,
       prevTags: prevTagKeywords,
       newTags: inputTags,
     });
@@ -143,7 +135,7 @@ export class PostsService {
       tags: inputTags,
       ...inputPost
     } = updatePostDto;
-    const { category_id, category_keyword, tag_id, tag_keyword, ...prevPost } =
+    const { category_id, category_keyword, tag_id, tag_keyword } =
       await this.findOneById(inputPost.id);
     const prevCategory = this.convertElementOfCategory(
       category_id,
@@ -156,7 +148,6 @@ export class PostsService {
       inputPost,
       prevCategory,
       prevTags,
-      prevPost,
     };
   }
 
@@ -168,7 +159,9 @@ export class PostsService {
     const idsArr = ids.split(',');
     const keywordsArr = keywords.split(',');
 
-    const result = idsArr.map((id, idx) => ({ id, keyword: keywordsArr[idx] }));
+    const result = idsArr.map(
+      (id, idx): Tag => ({ id, keyword: keywordsArr[idx] }),
+    );
 
     return result;
   }
