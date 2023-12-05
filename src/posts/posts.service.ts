@@ -143,10 +143,13 @@ export class PostsService {
       tags: inputTags,
       ...inputPost
     } = updatePostDto;
-    const {
-      category: prevCategory,
-      tags: prevTags,
-      ...prevPost
+    const { category_id, category_keyword, tag_id, tag_keyword, ...prevPost } =
+      await this.findOneById(inputPost.id);
+    const prevCategory = this.convertElementOfCategory(
+      category_id,
+      category_keyword,
+    );
+    const prevTags = this.convertElementOfTags(tag_id, tag_keyword);
     return {
       inputCategory,
       inputTags,
@@ -155,5 +158,18 @@ export class PostsService {
       prevTags,
       prevPost,
     };
+  }
+
+  private convertElementOfCategory(id: string, keyword: string): Category {
+    return { id, keyword };
+  }
+
+  private convertElementOfTags(ids: string, keywords: string): Tag[] {
+    const idsArr = ids.split(',');
+    const keywordsArr = keywords.split(',');
+
+    const result = idsArr.map((id, idx) => ({ id, keyword: keywordsArr[idx] }));
+
+    return result;
   }
 }
