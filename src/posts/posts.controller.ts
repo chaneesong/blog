@@ -55,6 +55,7 @@ export class PostsController {
   }
 
   @Delete(':id')
+  @UseInterceptors(CheckIdInterceptor)
   async remove(@Param('id') id: string) {
     const message = await this.postsService.remove(+id);
     return { message };
