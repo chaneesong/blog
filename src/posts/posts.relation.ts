@@ -36,14 +36,13 @@ export class PostsRelation {
     const result = await this.categoryService.create({
       keyword: newCategory,
     });
-    await this.categoryService.remove(prevCategory);
     return result;
   }
 
   async updatePostTags(updatedPostTags: UpdatePostTags) {
-    const { prevTags, newTags: newTagsKeywords } = updatedPostTags;
+    const { prevTags, newTags: newTagKeywords } = updatedPostTags;
 
-    const newTagsPromise = newTagsKeywords.map((keyword) => {
+    const newTagsPromise = newTagKeywords.map((keyword) => {
       const index = prevTags.findIndex((element) => element === keyword);
       if (index === -1) {
         return this.tagService.create({ keyword });
@@ -53,13 +52,7 @@ export class PostsRelation {
       return result;
     });
 
-    const result = await Promise.all(newTagsPromise);
-
-    const tagsToDelete = prevTags.map((keyword) =>
-      this.tagService.removeByKeyword(keyword),
-    );
-    await Promise.all(tagsToDelete);
-    return result;
+    return await Promise.all(newTagsPromise);
   }
 
   async removePostTags(tagIds: string[]) {
@@ -68,5 +61,15 @@ export class PostsRelation {
     );
 
     return await Promise.all(tagsToDeletePromise);
+  }
+
+  async removePrevElement({ categoryId, tagKeywords }): Promise<void> {
+    const tagsPromise = [];
+    await this.categoryService.remove(categoryId);
+    tagKeywords.forEach((tagKeyword: string) => {
+      const tagPromise = this.tagService.removeByKeyword(tagKeyword);
+      tagsPromise.push(tagPromise);
+    });
+    await Promise.all(tagsPromise);
   }
 }

@@ -113,7 +113,18 @@ export class PostsService {
       newTags: inputTags,
     });
 
-    return await this.postRepository.save({ ...inputPost, category, tags });
+    const result = await this.postRepository.save({
+      ...inputPost,
+      category,
+      tags,
+    });
+
+    await this.postsRelation.removePrevElement({
+      categoryId: prevCategory.id,
+      tagKeywords: prevTagKeywords,
+    });
+
+    return result;
   }
 
   async remove(id: number) {
