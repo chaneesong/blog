@@ -128,11 +128,12 @@ export class PostsService {
   }
 
   async remove(id: number) {
-    const { category, tags } = await this.findOneById(id);
+    const { category_id: categoryId, tag_id: tagIdString } =
+      await this.findOneById(id);
+    const tagIds = tagIdString.split(',');
 
     await this.postRepository.delete(id);
-    await this.categoryService.remove(category.id);
-    const tagIds = tags.map((tag) => tag.id);
+    await this.categoryService.remove(categoryId);
     await this.postsRelation.removePostTags(tagIds);
 
     return `This action removes a #${id} post`;
