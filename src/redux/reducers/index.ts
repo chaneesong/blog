@@ -10,7 +10,7 @@ import { fetchPostsReducer } from '../features/fetchPosts/fetchPostsSlice';
 import { posterReducer } from '../features/fetchPost/posterSlice';
 import axios from 'axios';
 
-const backURL = '5f72-121-140-99-172.ngrok-free.app';
+const backURL = 'http://api.chaneesong.xyz';
 
 axios.defaults.baseURL = `https://${backURL}`;
 axios.defaults.withCredentials = true;
