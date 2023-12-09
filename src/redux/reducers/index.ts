@@ -12,7 +12,7 @@ import axios from 'axios';
 
 const backURL = 'api.chaneesong.xyz:3000';
 
-axios.defaults.baseURL = `https://${backURL}`;
+axios.defaults.baseURL = `http://${backURL}`;
 axios.defaults.withCredentials = true;
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true;
 
