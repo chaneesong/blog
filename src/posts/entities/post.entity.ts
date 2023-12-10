@@ -20,7 +20,7 @@ export class Post {
   @Column()
   title: string;
 
-  @Column()
+  @Column('longtext')
   content: string;
 
   @CreateDateColumn()
