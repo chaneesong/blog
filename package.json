@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:pm2": "yarn pm2 start echosystem.config.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
