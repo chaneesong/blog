@@ -3,7 +3,6 @@ import { CategoryService } from 'src/category/category.service';
 import { TagService } from 'src/tag/tag.service';
 import { Post } from './entities/post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { UpdatePostCategory } from './interface/update-post-category.interface';
 import { UpdatePostTags } from './interface/update-post-tags.interface';
 
@@ -11,7 +10,6 @@ import { UpdatePostTags } from './interface/update-post-tags.interface';
 export class PostsRelation {
   constructor(
     @InjectRepository(Post)
-    private readonly postRepository: Repository<Post>,
     private readonly tagService: TagService,
     private readonly categoryService: CategoryService,
   ) {}
