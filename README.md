@@ -10,3 +10,7 @@ React + Next.js를 활용하여 블로그 클라이언트 구성
 
 - React 18
 - Next.js 13
+
+## 아키텍처
+
+![architecture](./public/images/architecture.svg)
