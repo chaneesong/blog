@@ -63,6 +63,7 @@ jobs:
         env:
           SERVER_URL: ${{ secrets.BLOG_SERVER_URL }}
           GOOGLE_DRIVE_API_CREDENTIALS: ${{ secrets.GOOGLE_DRIVE_API_CREDENTIALS }}
+          GOOGLE_DRIVE_ROOT_FOLDER: ${{ secrets.GOOGLE_DRIVE_ROOT_FOLDER }}
           PREV_IMAGE_URL: ${{ secrets.PREV_IMAGE_URL }}
           JWT: ${{ steps.get_jwt.outputs.JWT }}
         run: |
