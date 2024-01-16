@@ -1,8 +1,5 @@
 import { createReadStream, existsSync } from 'node:fs';
-import {
-  getOAuth2Client,
-  getGoogleAccessToken,
-} from './getGoogleAccessToken.js';
+import { getGoogleAccessToken } from './getGoogleAccessToken.js';
 import { createFolder } from './createFolder.js';
 import { parseImageName } from './parseImageName.js';
 import { getImageName } from './getImageName.js';
