@@ -12,8 +12,6 @@ permissions:
 jobs:
   request:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./posts
 
     strategy:
       matrix:
@@ -39,12 +37,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        working-directory: ${{ env.working-directory }}
         run: npm install
 
       - name: Get pushed files
         id: get_pushed_files
-        working-directory: ${{ env.working-directory }}
         run: |
           pushed_files=$(git diff-tree --no-commit-id --name-status -r ${{ github.sha }})
 
@@ -62,7 +58,6 @@ jobs:
           USER_ID: ${{ secrets.BLOG_USER_ID }}
           USER_PASSWORD: ${{ secrets.BLOG_USER_PASSWORD }}
           SERVER_URL: ${{ secrets.BLOG_SERVER_URL }}
-        working-directory: ${{ env.working-directory }}
         run: |
           jwt=$(curl -X POST -H "Content-Type: application/json" -d '{"id": "$USER_ID", "password": "$USER_PASSWORD"}' $SERVER_URL/auth/login | jq -r '.access_token')
           echo "JWT=$jwt" >> $GITHUB_OUTPUT
@@ -75,7 +70,6 @@ jobs:
           GOOGLE_DRIVE_ROOT_FOLDER: ${{ secrets.GOOGLE_DRIVE_ROOT_FOLDER }}
           PREV_IMAGE_URL: ${{ secrets.PREV_IMAGE_URL }}
           JWT: ${{ steps.get_jwt.outputs.JWT }}
-        working-directory: ${{ env.working-directory }}
         run: |
           pushed_files="${{ steps.get_pushed_files.outputs.PUSHED_FILES}}"
           npm run send "${pushed_files}"
