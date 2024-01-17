@@ -61,6 +61,7 @@ jobs:
         run: |
           jwt=$(curl -X POST -H "Content-Type: application/json" -d '{"id": $USER_ID, "password": $USER_PASSWORD}' $SERVER_URL/auth/login | jq -r '.access_token')
           echo "JWT=$jwt" >> $GITHUB_OUTPUT
+          echo $jwt
 
       - name: Send request to server
         id: request
