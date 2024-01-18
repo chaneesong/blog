@@ -47,7 +47,7 @@ export const uploadImage = async (fileName) => {
   try {
     const drive = await getGoogleDriveAccess(googleDriveAPICredentials);
     const folderId = await createFolder(drive, imgDirName);
-    const imgIds = await uploadImageToDrive(drive, imgDirName, folderId);
+    const imgIds = await uploadImageToDrive(drive, imgFullPath, folderId);
     return imgIds;
   } catch (error) {
     console.error('image upload error.');
