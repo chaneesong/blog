@@ -45,6 +45,8 @@ export const uploadImage = async (fileName) => {
   const imgPath = fileName.split('.')[0];
   console.log(imgPath);
 
+  if (!googleDriveAPICredentials) console.log('credentials null');
+
   if (!existsSync(imgPath)) return null;
 
   try {
