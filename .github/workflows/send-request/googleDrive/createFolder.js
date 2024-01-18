@@ -9,5 +9,6 @@ export const createFolder = async (drive, imagePath) => {
     },
   });
 
+  console.log('folder id: ', file.data.id);
   return file.data.id;
 };

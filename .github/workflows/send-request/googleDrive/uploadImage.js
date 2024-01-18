@@ -31,6 +31,8 @@ const uploadImageToDrive = async (drive, imagePath, folderId) => {
     (res) => (imageIds[res.data.name] = res.data.id)
   );
 
+  console.log('image ids: ', imageIds);
+
   return imageIds;
 };
 
