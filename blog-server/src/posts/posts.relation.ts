@@ -1,15 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { CategoryService } from 'src/category/category.service';
 import { TagService } from 'src/tag/tag.service';
-import { Post } from './entities/post.entity';
-import { InjectRepository } from '@nestjs/typeorm';
 import { UpdatePostCategory } from './interface/update-post-category.interface';
 import { UpdatePostTags } from './interface/update-post-tags.interface';
 
 @Injectable()
 export class PostsRelation {
   constructor(
-    @InjectRepository(Post)
     private readonly tagService: TagService,
     private readonly categoryService: CategoryService,
   ) {}
