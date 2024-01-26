@@ -2,7 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'blog-client',
-      script: 'yarn build && yarn start',
+      script: '.next/standalone/server.js',
+      exec_mode: 'cluster',
       instances: 1,
       watch: ['node_module'],
       wait_ready: true,

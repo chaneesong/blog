@@ -2,9 +2,10 @@ module.exports = {
   apps: [
     {
       name: 'blog-server',
-      script: 'yarn build && NODE_ENV=production nest start',
-      instances: 1,
+      script: 'dist/main.js',
       watch: ['node_modules'],
+      exec_mode: 'cluster',
+      instances: 1,
       wait_ready: true,
     },
   ],

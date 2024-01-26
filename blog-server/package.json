@@ -10,7 +10,7 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
-    "start:pm2": "yarn pm2 start echosystem.config.js",
+    "start:pm2": "yarn pm2-runtime start echosystem.config.js",
     "start:dev": "yarn prebuild && NODE_ENV=development nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",

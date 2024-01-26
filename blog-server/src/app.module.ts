@@ -13,13 +13,10 @@ import { CoreModule } from './common/core.module';
 
 @Module({
   imports: [
-    process.env.NODE_ENV === 'development'
-      ? ConfigModule.forRoot({
-          envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
-          isGlobal: true,
-          validationSchema,
-        })
-      : null,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DATABASE_HOST,
