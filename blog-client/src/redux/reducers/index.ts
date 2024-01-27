@@ -10,9 +10,9 @@ import { fetchPostsReducer } from '../features/fetchPosts/fetchPostsSlice';
 import { posterReducer } from '../features/fetchPost/posterSlice';
 import axios from 'axios';
 
-const backURL = 'api.chaneesong.xyz';
+const backURL = 'server:3030';
 
-axios.defaults.baseURL = `https://${backURL}`;
+axios.defaults.baseURL = `${backURL}`;
 axios.defaults.withCredentials = true;
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true;
 

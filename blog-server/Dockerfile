@@ -18,4 +18,4 @@ RUN yarn build
 ENV HOST 0.0.0.0
 EXPOSE 3030
 
-CMD ["doppler", "run", "--", "yarn", "start:pm2"]
+CMD ["doppler", "run", "--", "yarn", "start"]
