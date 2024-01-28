@@ -19,8 +19,8 @@ services:
     container_name: client
     build:
       context: ./blog-client
-    ports:
-      - 3000:3000
+    expose:
+      - '3000'
     environment:
       - DOPPLER_TOKEN=${DOPPLER_TOKEN_WEB}
 
