@@ -5,6 +5,8 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Observable, map } from 'rxjs';
+import { PostCreationDetail, PostRawData } from 'src/posts/types';
+import { TagCore } from 'src/tag/types';
 
 @Injectable()
 export class PostDataTransformInterceptor implements NestInterceptor {
@@ -28,7 +30,9 @@ export class PostDataTransformInterceptor implements NestInterceptor {
     );
   }
 
-  private dataTransform(data: PostRawData): Post {
+  private dataTransform(
+    data: PostRawData,
+  ): Omit<PostCreationDetail, 'createdAt'> & { createdAt: string } {
     return {
       id: data.post_id,
       title: data.post_title,
@@ -49,9 +53,9 @@ export class PostDataTransformInterceptor implements NestInterceptor {
     return tags.split(',');
   }
 
-  private concatTags(tagIds: string[], tagKeywords: string[]): Tag[] {
+  private concatTags(tagIds: string[], tagKeywords: string[]): TagCore[] {
     return tagIds.map(
-      (tag, idx): Tag => ({ id: tag, keyword: tagKeywords[idx] }),
+      (tag, idx): TagCore => ({ id: tag, keyword: tagKeywords[idx] }),
     );
   }
 

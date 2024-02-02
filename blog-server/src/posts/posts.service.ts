@@ -7,12 +7,20 @@ import { Post } from './entities/post.entity';
 import { CategoryService } from 'src/category/category.service';
 import { PostsRelation } from './posts.relation';
 import { ConvertUpdatePostDto } from './interface/convert-post.interface';
+import { Category } from 'src/category/entities/category.entity';
+import { Tag } from 'src/tag/entities/tag.entity';
+import { TagCore } from 'src/tag/types';
+import { CategoryCore } from 'src/category/types';
 
 @Injectable()
 export class PostsService {
   constructor(
     @InjectRepository(Post)
     private readonly postRepository: Repository<Post>,
+    @InjectRepository(Category)
+    private readonly categoryRepository: Repository<Category>,
+    @InjectRepository(Tag)
+    private readonly tagRepository: Repository<Tag>,
     private readonly categoryService: CategoryService,
     private readonly postsRelation: PostsRelation,
   ) {}
@@ -163,16 +171,19 @@ export class PostsService {
     };
   }
 
-  private convertElementOfCategory(id: string, keyword: string): Category {
+  private convertElementOfCategory(id: string, keyword: string): CategoryCore {
     return { id, keyword };
   }
 
-  private convertElementOfTags(ids: string, keywords: string): Tag[] {
+  private convertElementOfTags(ids: string, keywords: string): TagCore[] {
     const idsArr = ids.split(',');
     const keywordsArr = keywords.split(',');
 
     const result = idsArr.map(
-      (id, idx): Tag => ({ id, keyword: keywordsArr[idx] }),
+      (id, idx): TagCore => ({
+        id,
+        keyword: keywordsArr[idx],
+      }),
     );
 
     return result;
