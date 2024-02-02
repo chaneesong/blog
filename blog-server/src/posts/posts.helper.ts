@@ -16,4 +16,25 @@ export class PostHelper {
     }
     return prevCategory;
   }
+  async createTags(keywords: string[], queryRunner: QueryRunner) {
+    const prevTags = await Promise.all(
+      keywords.map((keyword) =>
+        queryRunner.manager.findOne(Tag, { where: { keyword } }),
+      ),
+    );
+
+    const newTags = await Promise.all(
+      prevTags.map((prevTag, idx) => {
+        if (!prevTag) {
+          const newTag = queryRunner.manager.create(Tag, {
+            keyword: keywords[idx],
+          });
+          return queryRunner.manager.save(newTag);
+        }
+        return prevTag;
+      }),
+    );
+
+    return newTags;
+  }
 }
