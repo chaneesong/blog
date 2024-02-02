@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { Post } from './entities/post.entity';
 import { CategoryService } from 'src/category/category.service';
 import { PostsRelation } from './posts.relation';
@@ -23,9 +23,10 @@ export class PostsService {
     private readonly tagRepository: Repository<Tag>,
     private readonly categoryService: CategoryService,
     private readonly postsRelation: PostsRelation,
+    private dataSource: DataSource,
   ) {}
 
-  async create(createPostDto: CreatePostDto) {
+  async create(createPostDto: CreatePostDto): Promise<Post> {
     const {
       category: inputCategory,
       tags: inputTags,
@@ -37,15 +38,35 @@ export class PostsService {
       return existingPost;
     }
 
-    const category = await this.categoryService.create({
-      keyword: inputCategory,
-    });
-    const tags = await this.postsRelation.createPostTags(inputTags);
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
 
-    const post = this.postRepository.create({ ...inputPost, category, tags });
-
-    const result = await this.postRepository.save(post);
-    return result;
+    try {
+      const category = this.categoryRepository.create({
+        keyword: inputCategory,
+      });
+      const savedCategory = await queryRunner.manager.save(category);
+      const tags = await Promise.all(
+        inputTags.map((keyword): Promise<Tag> => {
+          const tag = this.tagRepository.create({ keyword });
+          return queryRunner.manager.save(tag);
+        }),
+      );
+      const post = this.postRepository.create({ ...inputPost });
+      const savedPost = await queryRunner.manager.save(Post, {
+        ...post,
+        category: savedCategory,
+        tags,
+      });
+      await queryRunner.commitTransaction();
+      return savedPost;
+    } catch (error) {
+      console.log(error);
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async findAll() {
