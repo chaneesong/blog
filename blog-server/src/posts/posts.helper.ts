@@ -16,6 +16,7 @@ export class PostHelper {
     }
     return prevCategory;
   }
+
   async createTags(keywords: string[], queryRunner: QueryRunner) {
     const prevTags = await Promise.all(
       keywords.map((keyword) =>
@@ -37,4 +38,21 @@ export class PostHelper {
 
     return newTags;
   }
+
+  async updateCategory(
+    prevKeyword: string,
+    newKeyword: string,
+    queryRunner: QueryRunner,
+  ) {
+    if (prevKeyword === newKeyword) {
+      return await queryRunner.manager.findOne(Category, {
+        where: { keyword: prevKeyword },
+      });
+    }
+    const createdCategory = queryRunner.manager.create(Category, {
+      keyword: newKeyword,
+    });
+    return await queryRunner.manager.save(createdCategory);
+  }
+
 }
