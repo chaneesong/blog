@@ -27,11 +27,7 @@ export class PostsService {
   ) {}
 
   async create(createPostDto: CreatePostDto): Promise<Post> {
-    const {
-      category: inputCategory,
-      tags: inputTags,
-      ...inputPost
-    } = createPostDto;
+    const { category, tags, ...inputPost } = createPostDto;
     const existingPost = await this.findOneByTitle(inputPost.title);
 
     if (existingPost) {
@@ -43,12 +39,12 @@ export class PostsService {
     await queryRunner.startTransaction();
 
     try {
-      const category = this.categoryRepository.create({
-        keyword: inputCategory,
+      const createdcategory = this.categoryRepository.create({
+        keyword: category,
       });
-      const savedCategory = await queryRunner.manager.save(category);
-      const tags = await Promise.all(
-        inputTags.map((keyword): Promise<Tag> => {
+      const savedCategory = await queryRunner.manager.save(createdcategory);
+      const savedTags = await Promise.all(
+        tags.map((keyword): Promise<Tag> => {
           const tag = this.tagRepository.create({ keyword });
           return queryRunner.manager.save(tag);
         }),
@@ -57,7 +53,7 @@ export class PostsService {
       const savedPost = await queryRunner.manager.save(Post, {
         ...post,
         category: savedCategory,
-        tags,
+        tags: savedTags,
       });
       await queryRunner.commitTransaction();
       return savedPost;
