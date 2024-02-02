@@ -39,24 +39,19 @@ export class PostsService {
     await queryRunner.startTransaction();
 
     try {
-      const createdcategory = this.categoryRepository.create({
-        keyword: category,
-      });
-      const savedCategory = await queryRunner.manager.save(createdcategory);
-      const savedTags = await Promise.all(
-        tags.map((keyword): Promise<Tag> => {
-          const tag = this.tagRepository.create({ keyword });
-          return queryRunner.manager.save(tag);
-        }),
+      const newCategory = await this.postHelper.createCategory(
+        category,
+        queryRunner,
       );
-      const post = this.postRepository.create({ ...inputPost });
-      const savedPost = await queryRunner.manager.save(Post, {
-        ...post,
-        category: savedCategory,
-        tags: savedTags,
+      const newTags = await this.postHelper.createTags(tags, queryRunner);
+      const createdPost = queryRunner.manager.create(Post, {
+        ...inputPost,
+        category: newCategory,
+        tags: newTags,
       });
+      const newPost = await queryRunner.manager.save(createdPost);
       await queryRunner.commitTransaction();
-      return savedPost;
+      return newPost;
     } catch (error) {
       console.log(error);
       await queryRunner.rollbackTransaction();
