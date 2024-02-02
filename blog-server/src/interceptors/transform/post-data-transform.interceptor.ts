@@ -30,9 +30,7 @@ export class PostDataTransformInterceptor implements NestInterceptor {
     );
   }
 
-  private dataTransform(
-    data: PostRawData,
-  ): Omit<PostCreationDetail, 'createdAt'> & { createdAt: string } {
+  private dataTransform(data: PostRawData): PostCreationDetail {
     return {
       id: data.post_id,
       title: data.post_title,
