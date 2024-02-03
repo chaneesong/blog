@@ -4,8 +4,6 @@ import { UpdatePostDto } from './dto/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { Post } from './entities/post.entity';
-import { CategoryService } from 'src/category/category.service';
-import { PostsRelation } from './posts.relation';
 import { PostHelper } from './posts.helper';
 
 @Injectable()
@@ -13,8 +11,6 @@ export class PostsService {
   constructor(
     @InjectRepository(Post)
     private readonly postRepository: Repository<Post>,
-    private readonly categoryService: CategoryService,
-    private readonly postsRelation: PostsRelation,
     private readonly postHelper: PostHelper,
     private dataSource: DataSource,
   ) {}
@@ -162,14 +158,38 @@ export class PostsService {
   }
 
   async remove(id: number) {
-    const { category_id: categoryId, tag_id: tagIdString } =
-      await this.findOneById(id);
-    const tagIds = tagIdString.split(',');
+    const post = await this.postRepository.findOne({
+      where: { id },
+      relations: {
+        category: true,
+        tags: true,
+      },
+    });
 
-    await this.postRepository.delete(id);
-    await this.categoryService.remove(categoryId);
-    await this.postsRelation.removePostTags(tagIds);
+    if (!post) {
+      return 'No Posts.';
+    }
+    const tagIds = post.tags.map((tag) => tag.id);
 
-    return `This action removes a #${id} post`;
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      await queryRunner.manager.softDelete(Post, { id: post.id });
+      await this.postHelper.cleanupUnusedCategory(
+        post.category.id,
+        queryRunner,
+      );
+      await Promise.all(
+        tagIds.map((id) => this.postHelper.cleanupUnusedTag(id, queryRunner)),
+      );
+      await queryRunner.commitTransaction();
+      return `This action removes a #${id} post`;
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 }
