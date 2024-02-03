@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Category } from 'src/category/entities/category.entity';
 import { Tag } from 'src/tag/entities/tag.entity';
 import { QueryRunner } from 'typeorm';
+import { Post } from './entities/post.entity';
 
 @Injectable()
 export class PostHelper {
@@ -76,7 +77,25 @@ export class PostHelper {
     return result;
   }
 
-  async cleanupUnusedCategory() {}
+  async cleanupUnusedCategory(id: string, queryRunner: QueryRunner) {
+    const posts = await queryRunner.manager.find(Post, {
+      where: { category: { id } },
+    });
+    if (!posts.length) {
+      await queryRunner.manager.softDelete(Category, { id });
+      return `Successfully deleted the ${id} category.`;
+    }
+    return `Deletion failed due to ${id} associated posts.`;
+  }
 
-  async cleanupUnusedTag() {}
+  async cleanupUnusedTag(id: string, queryRunner: QueryRunner) {
+    const posts = await queryRunner.manager.find(Post, {
+      where: { tags: { id } },
+    });
+    if (!posts.length) {
+      await queryRunner.manager.softDelete(Tag, { id });
+      return `Successfully deleted the ${id} tag.`;
+    }
+    return `Deletion failed due to ${id} associated posts.`;
+  }
 }

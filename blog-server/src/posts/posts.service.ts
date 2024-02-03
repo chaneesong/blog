@@ -121,6 +121,7 @@ export class PostsService {
     });
     const prevCategoryKeyword = prevPost.category.keyword;
     const prevTagKeywords = prevPost.tags.map((tag) => tag.keyword);
+    const prevTagIds = prevPost.tags.map((tag) => tag.id);
 
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
@@ -142,6 +143,15 @@ export class PostsService {
         category: updatedCategory,
         tags: updatedTags,
       });
+      await this.postHelper.cleanupUnusedCategory(
+        prevPost.category.id,
+        queryRunner,
+      );
+      await Promise.all(
+        prevTagIds.map((id) =>
+          this.postHelper.cleanupUnusedTag(id, queryRunner),
+        ),
+      );
       await queryRunner.commitTransaction();
       return updatedPost;
     } catch (error) {
