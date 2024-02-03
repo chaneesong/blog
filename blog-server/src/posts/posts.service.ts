@@ -6,11 +6,6 @@ import { DataSource, Repository } from 'typeorm';
 import { Post } from './entities/post.entity';
 import { CategoryService } from 'src/category/category.service';
 import { PostsRelation } from './posts.relation';
-import { ConvertUpdatePostDto } from './interface/convert-post.interface';
-import { Category } from 'src/category/entities/category.entity';
-import { Tag } from 'src/tag/entities/tag.entity';
-import { TagCore } from 'src/tag/types';
-import { CategoryCore } from 'src/category/types';
 
 @Injectable()
 export class PostsService {
