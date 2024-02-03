@@ -4,4 +4,4 @@
 
 ## Architecture
 
-![blog](https://github.com/chaneesong/blog/assets/73852281/19259692-03ed-4d9e-9618-ffd87912442d)
+<img src="https://github.com/chaneesong/blog/assets/73852281/4608a717-ddef-435b-b774-46cb59f16b38" alt="architecture" width="600" height="800">
