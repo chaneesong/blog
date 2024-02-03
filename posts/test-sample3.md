@@ -1,4 +1,5 @@
 ---
+id: 1
 title: test-sample3
 category: 알고리즘
 tags: [leetcode, algorithm]
@@ -13,7 +14,7 @@ tags: [leetcode, algorithm]
 
 ## 해결 방법
 
-![solve](sample/test.png)
+![test.png](https://drive.google.com/uc?export=view&id=1SeoWcmn6Tf4y4dmiQXVz_zVj4C8vpB7a)
 
 1. 대문자를 소문자로 변환한다.
 2. 영어와 숫자가 아닌 문자는 제거한다.
@@ -33,7 +34,7 @@ export function isPalindrome(s: string): boolean {
 }
 ```
 
-![solve](sample/test.png)
+![test.png](https://drive.google.com/uc?export=view&id=1SeoWcmn6Tf4y4dmiQXVz_zVj4C8vpB7a)
 
 먼저, 문자열 전체를 `toLowerCase` 메서드를 활용해 모두 소문자로 변경한다.  
 그 후 `replace`와 정규식을 활용해 숫자와 영어가 아닌 모든 문자를 제거한다.  
