@@ -118,33 +118,44 @@ export class PostsService {
   }
 
   async update(updatePostDto: UpdatePostDto): Promise<Post> {
-    const { inputCategory, inputTags, inputPost, prevCategory, prevTags } =
-      await this.convertUpdatePostDto(updatePostDto);
-
-    const category = await this.postsRelation.updatePostCategory({
-      prevCategory: prevCategory.id,
-      newCategory: inputCategory,
+    const { category, tags, ...inputPost } = updatePostDto;
+    const prevPost = await this.postRepository.findOne({
+      where: { id: inputPost.id },
+      relations: {
+        category: true,
+        tags: true,
+      },
     });
+    const prevCategoryKeyword = prevPost.category.keyword;
+    const prevTagKeywords = prevPost.tags.map((tag) => tag.keyword);
 
-    const prevTagKeywords = prevTags.map((prevTag) => prevTag.keyword);
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
 
-    const tags = await this.postsRelation.updatePostTags({
-      prevTags: prevTagKeywords,
-      newTags: inputTags,
-    });
-
-    const result = await this.postRepository.save({
-      ...inputPost,
-      category,
-      tags,
-    });
-
-    await this.postsRelation.removePrevElement({
-      categoryId: prevCategory.id,
-      tagKeywords: prevTagKeywords,
-    });
-
-    return result;
+    try {
+      const updatedCategory = await this.postHelper.updateCategory(
+        prevCategoryKeyword,
+        category,
+        queryRunner,
+      );
+      const updatedTags = await this.postHelper.updateTags(
+        prevTagKeywords,
+        tags,
+        queryRunner,
+      );
+      const updatedPost = await queryRunner.manager.save(Post, {
+        ...inputPost,
+        category: updatedCategory,
+        tags: updatedTags,
+      });
+      await queryRunner.commitTransaction();
+      return updatedPost;
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   async remove(id: number) {
