@@ -17,12 +17,9 @@ export class PostsService {
   constructor(
     @InjectRepository(Post)
     private readonly postRepository: Repository<Post>,
-    @InjectRepository(Category)
-    private readonly categoryRepository: Repository<Category>,
-    @InjectRepository(Tag)
-    private readonly tagRepository: Repository<Tag>,
     private readonly categoryService: CategoryService,
     private readonly postsRelation: PostsRelation,
+    private readonly postHelper: PostHelper,
     private dataSource: DataSource,
   ) {}
 
@@ -168,47 +165,5 @@ export class PostsService {
     await this.postsRelation.removePostTags(tagIds);
 
     return `This action removes a #${id} post`;
-  }
-
-  private async convertUpdatePostDto(
-    updatePostDto: UpdatePostDto,
-  ): Promise<ConvertUpdatePostDto> {
-    const {
-      category: inputCategory,
-      tags: inputTags,
-      ...inputPost
-    } = updatePostDto;
-    const { category_id, category_keyword, tag_id, tag_keyword } =
-      await this.findOneById(inputPost.id);
-    const prevCategory = this.convertElementOfCategory(
-      category_id,
-      category_keyword,
-    );
-    const prevTags = this.convertElementOfTags(tag_id, tag_keyword);
-    return {
-      inputCategory,
-      inputTags,
-      inputPost,
-      prevCategory,
-      prevTags,
-    };
-  }
-
-  private convertElementOfCategory(id: string, keyword: string): CategoryCore {
-    return { id, keyword };
-  }
-
-  private convertElementOfTags(ids: string, keywords: string): TagCore[] {
-    const idsArr = ids.split(',');
-    const keywordsArr = keywords.split(',');
-
-    const result = idsArr.map(
-      (id, idx): TagCore => ({
-        id,
-        keyword: keywordsArr[idx],
-      }),
-    );
-
-    return result;
   }
 }
