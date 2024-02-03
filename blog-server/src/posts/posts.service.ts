@@ -6,6 +6,7 @@ import { DataSource, Repository } from 'typeorm';
 import { Post } from './entities/post.entity';
 import { CategoryService } from 'src/category/category.service';
 import { PostsRelation } from './posts.relation';
+import { PostHelper } from './posts.helper';
 
 @Injectable()
 export class PostsService {
