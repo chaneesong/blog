@@ -5,7 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Post } from './entities/post.entity';
 import { Category } from 'src/category/entities/category.entity';
 import { Tag } from 'src/tag/entities/tag.entity';
-import { PostsRelation } from './posts.relation';
 import { CategoryModule } from 'src/category/category.module';
 import { TagModule } from 'src/tag/tag.module';
 import { PostHelper } from './posts.helper';
@@ -24,7 +23,6 @@ import { PostHelper } from './posts.helper';
   providers: [
     PostsService, //
     PostHelper,
-    PostsRelation,
     Logger,
   ],
 })

@@ -59,7 +59,7 @@ export class PostsService {
         'post.title',
         'post.content',
         `DATE_FORMAT(post.createdAt, '%Y-%m-%d') AS post_createdAt`,
-        'GROUP_CONCAT(DISTINCT category.id) AS category_id',
+        'category.id',
         'category.keyword',
         'GROUP_CONCAT(tag.id ORDER BY tag.id) AS tag_id',
         'GROUP_CONCAT(tag.keyword ORDER BY tag.id) AS tag_keyword',
@@ -79,11 +79,12 @@ export class PostsService {
         'post.title',
         'post.content',
         `DATE_FORMAT(post.createdAt, '%Y-%m-%d') AS post_createdAt`,
-        'GROUP_CONCAT(DISTINCT category.id) AS category_id',
+        'category.id',
         'category.keyword',
         'GROUP_CONCAT(tag.id ORDER BY tag.id) AS tag_id',
         'GROUP_CONCAT(tag.keyword ORDER BY tag.id) AS tag_keyword',
       ])
+      .groupBy('post.id')
       .getRawOne();
   }
 
@@ -98,12 +99,13 @@ export class PostsService {
         'post.title',
         'post.content',
         `DATE_FORMAT(post.createdAt, '%Y-%m-%d') AS post_createdAt`,
-        'GROUP_CONCAT(DISTINCT category.id) AS category_id',
+        'category.id',
         'category.keyword',
         'GROUP_CONCAT(tag.id ORDER BY tag.id) AS tag_id',
         'GROUP_CONCAT(tag.keyword ORDER BY tag.id) AS tag_keyword',
       ])
-      .getOne();
+      .groupBy('post.id')
+      .getRawOne();
   }
 
   async update(updatePostDto: UpdatePostDto): Promise<Post> {
