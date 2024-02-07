@@ -25,3 +25,14 @@ services:
       - /server/node_modules
     environment:
       - DOPPLER_TOKEN=${DOPPLER_TOKEN_API}
+
+  db:
+    container_name: db
+    image: mysql:8.0.31
+    restart: always
+    environment:
+      - MYSQL_ROOT=root
+      - MYSQL_DATABASE=blog_database
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
