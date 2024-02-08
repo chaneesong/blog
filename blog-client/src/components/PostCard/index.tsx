@@ -21,13 +21,6 @@ const PostCard = ({ post }: PostCardProps) => {
     <Link href={`/posts/${post.id}`} key={post.id} passHref>
       <PostCardContainer>
         <ContentsContainer post={post} />
-        <StyledImage
-          src="/images/Forest1.png" // TODO 이미지 임시 제거
-          alt="preview"
-          width={0}
-          height={0}
-          sizes="100vh"
-        ></StyledImage>
       </PostCardContainer>
     </Link>
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const AppFooter = styled.footer`
-  background-color: #efefef;
+  background-color: #22272e;
   width: 100%;
 `;
 

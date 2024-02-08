@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import Navigation from './Navigation';
+import Navbar from './Navigation';
 import Footer from './Footer';
 import DefaultGrid from './PageLayout/DefaultGrid';
 import PosterGrid from './PageLayout/PosterGrid';
@@ -11,17 +11,7 @@ const MainContainer = styled.div`
   min-width: 100%;
   min-height: 100%;
   align-items: flex-start;
-`;
-
-const ImageContainer = styled.div`
-  width: 100%;
-  height: 300px;
-`;
-
-const Img = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background-color: #22272e;
 `;
 
 const AppLayout = ({ children }: ReactNodeProps) => {
@@ -30,16 +20,7 @@ const AppLayout = ({ children }: ReactNodeProps) => {
 
   return (
     <MainContainer className="d-flex flex-column">
-      {hasId ? null : (
-        <ImageContainer style={{ width: '100%', height: '300px' }}>
-          <Img
-            src="/images/flog.png"
-            title="image"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-        </ImageContainer>
-      )}
-      <Navigation />
+      <Navbar />
       <div className="App flex-grow-1 flex-column">
         {hasId ? (
           <PosterGrid>{children}</PosterGrid>
