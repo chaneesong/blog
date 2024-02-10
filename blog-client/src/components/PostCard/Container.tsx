@@ -10,13 +10,9 @@ const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   height: auto;
-  border: 1px solid #d3d3d3;
-  margin-bottom: 30px;
-  transition: box-shadow 0.1s ease-in-out;
-
-  &:hover {
-    box-shadow: 3px 3px 3px #d3d3d3;
-  }
+  border: 1px solid #373e47;
+  border-left: none;
+  border-right: none;
 `;
 
 const PostCardContainer = ({ children }: PostCardContainerProps) => {

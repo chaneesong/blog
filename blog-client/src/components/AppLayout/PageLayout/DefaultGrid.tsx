@@ -8,11 +8,7 @@ const DefaultGrid = ({ children }: ReactNodeProps) => {
   return (
     <div className="container row mx-auto contents-margin-top">
       <div className="col-lg-2"></div>
-      {miniPostCard ? (
-        <TwoPostCardGrid>{children}</TwoPostCardGrid>
-      ) : (
-        <OnePostCardGrid>{children}</OnePostCardGrid>
-      )}
+      <TwoPostCardGrid>{children}</TwoPostCardGrid>
       <div className="col-lg-2"></div>
     </div>
   );

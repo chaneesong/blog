@@ -14,6 +14,10 @@ const PostCardContent = styled.div`
   width: 100%;
   margin-left: 5px;
   margin-bottom: 10px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ContentContainer = ({ content }: ContentProps) => {

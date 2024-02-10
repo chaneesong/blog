@@ -11,6 +11,10 @@ const MainContainer = styled.div`
   min-width: 100%;
   min-height: 100%;
   align-items: flex-start;
+  background-color: #1c2128;
+`;
+
+const GridContainer = styled.div`
   background-color: #22272e;
 `;
 
@@ -21,13 +25,13 @@ const AppLayout = ({ children }: ReactNodeProps) => {
   return (
     <MainContainer className="d-flex flex-column">
       <Navbar />
-      <div className="App flex-grow-1 flex-column">
+      <GridContainer className="App flex-grow-1 flex-column">
         {hasId ? (
           <PosterGrid>{children}</PosterGrid>
         ) : (
           <DefaultGrid>{children}</DefaultGrid>
         )}
-      </div>
+      </GridContainer>
       <Footer />
     </MainContainer>
   );

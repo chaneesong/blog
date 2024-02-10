@@ -20,7 +20,7 @@ const PostList = () => {
       <AppLayout>
         All Posts
         <div>{postCards}</div>
-        <div className="row justify-content-around">{miniPostCards}</div>
+        {/* <div className="row justify-content-around">{miniPostCards}</div> */}
       </AppLayout>
     </>
   );
