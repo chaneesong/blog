@@ -38,7 +38,7 @@ const ContentsContainer = ({ post }: PostContentProps) => {
     <StyledContentsContainer>
       <HeaderContainer>
         <Link href={`/posts/${post.id}`} key={post.id} passHref>
-          <Title title={post.title} createdAt={post.createdAt} />
+          <Title title={post.title} />
         </Link>
         <CategorySection category={post.category.keyword} />
       </HeaderContainer>

@@ -3,7 +3,7 @@ import { AppFooter, Container, Copyright, Image } from './styled';
 
 const Footer = () => (
   <AppFooter>
-    <Container className="container p-4">
+    <Container>
       <div>
         <a title="github" href="https://github.com/chaneesong">
           <Image src="/images/github.svg" alt="github" />

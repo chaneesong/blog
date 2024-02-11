@@ -7,13 +7,18 @@ const Content = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  &::after {
-    content: '';
-    display: block;
-    width: 100px;
-    border-bottom: 1px solid #373e47;
-    margin: 20px 0px;
-  }
+  display: flex;
+  align-items: flex-start;
+`;
+
+const Image = styled.img`
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+`;
+
+const Title = styled.div`
+  font-size: 2em;
 `;
 
 const BlogIntro = () => {
@@ -27,7 +32,8 @@ const BlogIntro = () => {
       </Content>
       <Content>
         <TitleContainer>
-          <h3>개발 일지</h3>
+          <Image title="Code" src="/images/code.svg" />
+          <Title>개발 일지</Title>
         </TitleContainer>
         다양한 토이 프로젝트를 만드는 과정을 공유합니다.
         <br />
@@ -35,19 +41,22 @@ const BlogIntro = () => {
       </Content>
       <Content>
         <TitleContainer>
-          <h3>에러 처리</h3>
+          <Image title="Debug" src="/images/debug.svg" />
+          <Title>에러 처리</Title>
         </TitleContainer>
         인상 깊었던 에러를 처리한 경험을 공유합니다.
       </Content>
       <Content>
         <TitleContainer>
-          <h3>Github</h3>
+          <Image title="Github" src="/images/github.svg" />
+          <Title>Github</Title>
         </TitleContainer>
         게시 된 모든 내용의 소스 코드는 Github에서 다시 볼 수 있습니다.
       </Content>
       <Content>
         <TitleContainer>
-          <h3>Notion</h3>
+          <Image title="Notion" src="/images/notion.svg" />
+          <Title>Notion</Title>
         </TitleContainer>
         강의 및 책 등을 통해 배운 내용을 다듬어 정리하는 공간은 따로 있습니다.
         <br />

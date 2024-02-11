@@ -3,7 +3,7 @@ import AppLayout from '@/components/AppLayout';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import { fetchPostsOfTagThunk } from '@/redux/features/fetchPostsOfTag/actions/fetchPostsOfTagAction';
-import { separateLayers } from '@/lib/PostCard/separateLayers';
+import PostCard from '@/components/PostCard';
 
 const Tag = () => {
   const router = useRouter();
@@ -17,13 +17,10 @@ const Tag = () => {
     }
   }, [router.isReady]);
 
-  const { postCards, miniPostCards } = separateLayers(posts);
-
   return (
     <AppLayout>
       <h3>{tag}</h3>
-      <div>{postCards}</div>
-      <div className="row justify-content-around">{miniPostCards}</div>
+      <PostCard posts={posts}></PostCard>
     </AppLayout>
   );
 };

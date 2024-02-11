@@ -1,14 +1,17 @@
-import Link from 'next/link';
 import React from 'react';
 
 import PostCardContainer from './Container';
 import ContentsContainer from './ContentContainer';
 
-const PostCard = ({ post }: PostCardProps) => {
+const PostCard = ({ posts }: PostCardProps) => {
   return (
-    <PostCardContainer>
-      <ContentsContainer post={post} />
-    </PostCardContainer>
+    <>
+      {posts.map((post) => (
+        <PostCardContainer key={post.id}>
+          <ContentsContainer post={post} />
+        </PostCardContainer>
+      ))}
+    </>
   );
 };
 

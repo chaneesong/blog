@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 interface TitleProps {
   title: string;
-  createdAt: string;
 }
 
 const Title = styled.h2`
@@ -11,7 +10,7 @@ const Title = styled.h2`
   margin-right: 15px;
 `;
 
-const PostCardTitle = ({ title, createdAt }: TitleProps) => {
+const PostCardTitle = ({ title }: TitleProps) => {
   return <Title>{title}</Title>;
 };
 

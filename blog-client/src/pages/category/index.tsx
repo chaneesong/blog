@@ -20,7 +20,7 @@ const CategoryList = () => {
     <>
       <AppLayout>
         Category
-        <ListGroup variant="flush">
+        <ListGroup>
           {categories.map((category: string) => (
             <Categorization prefix="/category" root={category} key={category} />
           ))}

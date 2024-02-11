@@ -25,8 +25,11 @@ const Post = () => {
   return (
     <>
       <AppLayout>
-        <Title titleProp={titleElement}></Title>
-        <ContentContainer content={content} />
+        <></>
+        <div>
+          <Title titleProp={titleElement}></Title>
+          <ContentContainer content={content} />
+        </div>
         <TOC />
       </AppLayout>
     </>

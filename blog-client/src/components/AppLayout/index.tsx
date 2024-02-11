@@ -3,19 +3,31 @@ import { useRouter } from 'next/router';
 
 import Navbar from './Navigation';
 import Footer from './Footer';
-import DefaultGrid from './PageLayout/DefaultGrid';
-import PosterGrid from './PageLayout/PosterGrid';
 import styled from 'styled-components';
+import PosterGrid from './PageLayout/PosterGrid';
+import DefaultGrid from './PageLayout/DefaultGrid';
 
 const MainContainer = styled.div`
-  min-width: 100%;
-  min-height: 100%;
-  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color: #1c2128;
 `;
 
 const GridContainer = styled.div`
   background-color: #22272e;
+  flex-grow: 1;
+  @media only screen and (min-width: 1025px) {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 16px;
+  }
+
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+  }
+
+  @media only screen and (max-width: 600px) {
+  }
 `;
 
 const AppLayout = ({ children }: ReactNodeProps) => {
@@ -23,9 +35,9 @@ const AppLayout = ({ children }: ReactNodeProps) => {
   const hasId = router.query.id ?? null;
 
   return (
-    <MainContainer className="d-flex flex-column">
+    <MainContainer>
       <Navbar />
-      <GridContainer className="App flex-grow-1 flex-column">
+      <GridContainer>
         {hasId ? (
           <PosterGrid>{children}</PosterGrid>
         ) : (

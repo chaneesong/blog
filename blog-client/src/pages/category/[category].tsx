@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 
 import AppLayout from '@/components/AppLayout';
 import { fetchPostsOfCategoryThunk } from '@/redux/features/fetchPostsOfCategory/actions/fetchPostsOfCategoryAction';
-import { separateLayers } from '@/lib/PostCard/separateLayers';
+import PostCard from '@/components/PostCard';
 
 const Category = () => {
   const router = useRouter();
@@ -18,13 +18,10 @@ const Category = () => {
     }
   }, [router.isReady]);
 
-  const { postCards, miniPostCards } = separateLayers(posts);
-
   return (
     <AppLayout>
       <h3>{category}</h3>
-      <div>{postCards}</div>
-      <div className="row justify-content-around">{miniPostCards}</div>
+      <PostCard posts={posts}></PostCard>
     </AppLayout>
   );
 };

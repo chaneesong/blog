@@ -28,7 +28,7 @@ interface PostTitleProp {
 }
 
 interface PostCardProps {
-  post: Post;
+  posts: Post[];
 }
 
 interface ReactNodeProps {

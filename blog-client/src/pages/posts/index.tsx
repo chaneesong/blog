@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import AppLayout from '@/components/AppLayout';
 import { fetchPostsThunk } from '@/redux/features/fetchPosts/actions/fetchPostsAction';
-import { separateLayers } from '@/lib/PostCard/separateLayers';
+import PostCard from '@/components/PostCard';
 
 const PostList = () => {
   const dispatch = useAppDispatch();
@@ -13,14 +13,10 @@ const PostList = () => {
     dispatch(fetchPostsThunk());
   }, []);
 
-  const { postCards, miniPostCards } = separateLayers(posts);
-
   return (
     <>
       <AppLayout>
-        All Posts
-        <div>{postCards}</div>
-        {/* <div className="row justify-content-around">{miniPostCards}</div> */}
+        All Posts<PostCard posts={posts}></PostCard>
       </AppLayout>
     </>
   );
