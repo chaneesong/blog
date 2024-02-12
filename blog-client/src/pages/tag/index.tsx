@@ -6,6 +6,7 @@ import AppLayout from '../../components/AppLayout';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import { fetchTagsThunk } from '@/redux/features/fetchTag/actions/fetchTagAction';
 import Categorization from '@/components/Categorization';
+import Title from '@/components/Categorization/Title';
 
 const TagList = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ const TagList = () => {
   return (
     <>
       <AppLayout>
-        Tag
+        <Title title={'Tag'}></Title>
         <ListGroup>
           {tags.map((tag: string) => (
             <Categorization prefix="/tag" root={tag} key={tag} />

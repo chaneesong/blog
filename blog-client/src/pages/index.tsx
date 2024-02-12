@@ -1,13 +1,11 @@
 import React from 'react';
 import AppLayout from '../components/AppLayout';
-import BlogArticle from '@/components/Index/BlogArticle';
-import BlogTitle from '@/components/Index/BlogTitle';
+import BlogIntro from '@/components/Intro';
 
 const Home = () => {
   return (
     <AppLayout>
-      <BlogTitle />
-      <BlogArticle />
+      <BlogIntro />
     </AppLayout>
   );
 };

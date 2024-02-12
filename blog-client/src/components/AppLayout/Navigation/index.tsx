@@ -25,7 +25,7 @@ const NavList = styled.ul`
   display: flex;
   margin: 0;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 812px) {
     display: none;
   }
 `;
@@ -40,7 +40,7 @@ const NavLink = styled.a`
   display: block;
   padding: 10px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 812px) {
     width: 100%;
   }
 `;
@@ -49,7 +49,7 @@ const MobileIcon = styled.div`
   display: none;
   cursor: pointer;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 812px) {
     display: block;
   }
 `;

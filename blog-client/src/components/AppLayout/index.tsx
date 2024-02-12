@@ -11,22 +11,27 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
   background-color: #1c2128;
 `;
 
 const GridContainer = styled.div`
-  background-color: #22272e;
   flex-grow: 1;
+  background-color: #22272e;
+  display: grid;
+
   @media only screen and (min-width: 1025px) {
-    display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     gap: 16px;
   }
 
-  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+  @media only screen and (min-width: 694px) and (max-width: 1024px) {
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 16px;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 694px) {
+    display: block;
   }
 `;
 

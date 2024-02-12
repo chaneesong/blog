@@ -1,11 +1,11 @@
 import React from 'react';
 
 const PosterGrid = ({ children }: ReactNodeProps) => {
-  const [title, content, toc] = React.Children.toArray(children);
+  const [content, toc] = React.Children.toArray(children);
 
   return (
     <>
-      <div>{title}</div>
+      <div></div>
       <div>{content}</div>
       <div>{toc}</div>
     </>

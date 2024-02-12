@@ -7,8 +7,8 @@ const IndexTitle = styled.h1`
   padding: 0.25em 0;
 `;
 
-const BlogTitle = () => {
+const IntroTitle = () => {
   return <IndexTitle>Song's Bunker</IndexTitle>;
 };
 
-export default BlogTitle;
+export default IntroTitle;

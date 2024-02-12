@@ -14,6 +14,8 @@ export const Image = styled.img`
 export const Container = styled.div`
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  margin: 15px;
 `;
 
 export const Copyright = styled.span`

@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import AppLayout from '@/components/AppLayout';
 import { fetchPostsThunk } from '@/redux/features/fetchPosts/actions/fetchPostsAction';
 import PostCard from '@/components/PostCard';
+import Title from '@/components/Categorization/Title';
 
 const PostList = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +17,8 @@ const PostList = () => {
   return (
     <>
       <AppLayout>
-        All Posts<PostCard posts={posts}></PostCard>
+        <Title title={'Posts'}></Title>
+        <PostCard posts={posts}></PostCard>
       </AppLayout>
     </>
   );

@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import AppLayout from '../../components/AppLayout';
 import { fetchCategoryThunk } from '@/redux/features/fetchCategory/actions/fetchCategoryAction';
 import Categorization from '@/components/Categorization';
+import Title from '@/components/Categorization/Title';
 
 const CategoryList = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ const CategoryList = () => {
   return (
     <>
       <AppLayout>
-        Category
+        <Title title={'Category'}></Title>
         <ListGroup>
           {categories.map((category: string) => (
             <Categorization prefix="/category" root={category} key={category} />
