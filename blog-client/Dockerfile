@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
 ARG DOPPLER_TOKEN
 
 RUN yarn
+RUN yarn build
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
