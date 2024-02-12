@@ -23,6 +23,8 @@ services:
       - '3000'
     environment:
       - DOPPLER_TOKEN=${DOPPLER_TOKEN_WEB}
+    depends_on:
+      - api
 
   api:
     container_name: server
