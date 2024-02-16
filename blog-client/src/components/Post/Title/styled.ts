@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledTitle = styled.div`
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-size: 50px;
+  margin: 1.15em 0;
+  font-size: 2.1em;
 `;
 
 export const StyledCreatedAt = styled.div`
@@ -12,8 +11,7 @@ export const StyledCreatedAt = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  margin-bottom: 15px;
-  padding-bottom: 5px;
+  padding-bottom: 0.75em;
 `;
 
 export const StyledTag = styled.span`

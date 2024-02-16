@@ -43,33 +43,33 @@ const MarkdownWrapper = styled(ReactMarkdown)`
   h4,
   h5,
   h6 {
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 16px;
   }
 
   h1 {
     margin-top: 40px;
-    font-size: 40px;
+    font-size: 2.1rem;
   }
   h2 {
     margin-top: 26px;
-    font-size: 32px;
+    font-size: 1.8rem;
   }
   h3 {
     margin-top: 24px;
-    font-size: 24px;
+    font-size: 1.5rem;
   }
   h4 {
     margin-top: 24px;
-    font-size: 18px;
+    font-size: 1.2rem;
   }
   h5 {
     margin-top: 24px;
-    font-size: 16px;
+    font-size: 1rem;
   }
   h6 {
     margin-top: 24px;
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   & img {

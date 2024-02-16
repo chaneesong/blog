@@ -21,7 +21,7 @@ const GridContainer = styled.div`
   display: grid;
 
   @media only screen and (min-width: 1025px) {
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 1.3fr 1fr;
     gap: 16px;
   }
 
