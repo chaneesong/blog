@@ -19,6 +19,7 @@ services:
     container_name: client
     build:
       context: ./blog-client
+      dockerfile: Dockerfile.prd
     expose:
       - '3000'
     environment:
@@ -30,6 +31,7 @@ services:
     container_name: server
     build:
       context: ./blog-server
+      dockerfile: Dockerfile.prd
     expose:
       - '3030'
     environment:

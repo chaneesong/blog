@@ -1,16 +1,16 @@
-name: API Server CI/CD With Docker
+name: Web Server CI/CD With Docker
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'blog-server/**'
+      - 'blog-client/**'
 
 env:
-  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/server
+  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/client
   VERSION: ${{ github.sha }}
-  NAMNE: server
+  NAMNE: client
 
 jobs:
   deploy:
@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: ./blog-server
+          context: ./blog-client
           file: ./Dockerfile.build
           push: true
           tags: ${{ env.DOCKER_IMAGE }}:latest
