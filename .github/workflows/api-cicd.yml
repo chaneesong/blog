@@ -16,7 +16,7 @@ env:
 jobs:
   deploy:
     name: Build
-    runs-on: ubuntu-latestt
+    runs-on: ubuntu-latest
     permissions:
       contents: write
       packages: write
