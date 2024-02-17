@@ -47,6 +47,6 @@ jobs:
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: ./blog-client
-          file: Dockerfile.build
+          file: ./blog-client/Dockerfile.build
           push: true
           tags: ${{ env.DOCKER_IMAGE }}:latest
