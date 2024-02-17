@@ -11,7 +11,7 @@ env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/server
   VERSION: ${{ github.sha }}
   NAMNE: server
-  DOCKERFILE_PATH: ./blog_server/Dockerfile
+  DOCKERFILE_PATH: ${context}/blog-server/Dockerfile
 
 jobs:
   deploy:
@@ -47,6 +47,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          file: ${{ env. DOCKERFILE_PATH }}
+          context: ./blog-server
           push: true
           tags: ${{ env.DOCKER_IMAGE }}:latest
