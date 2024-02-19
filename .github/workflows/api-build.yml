@@ -1,4 +1,4 @@
-name: API Server CI/CD With Docker
+name: API Server Build with Docker
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
   NAMNE: server
 
 jobs:
-  deploy:
+  build:
     name: Build
     runs-on: ubuntu-latest
     permissions:
