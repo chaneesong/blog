@@ -6,7 +6,6 @@ IMAGE_NAME=$3
 DOPPLER_TOKEN=$4
 
 cd $TARGET_DIR
-git pull origin main
 docker-compose down $SERVICE --volumes --rmi all
 docker pull ghcr.io/chaneesong/$IMAGE_NAME:latest
 $DOPPLER_TOKEN docker compose up -d api

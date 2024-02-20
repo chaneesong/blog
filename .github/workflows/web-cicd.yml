@@ -1,16 +1,16 @@
-name: API Server Build with Docker
+name: Web Server Build With Docker
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'blog-server/**'
+      - 'blog-client/**'
 
 env:
-  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/server
+  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/client
   VERSION: ${{ github.sha }}
-  NAMNE: server
+  NAMNE: client
 
 jobs:
   build:
@@ -46,7 +46,29 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: ./blog-server
-          file: ./blog-server/Dockerfile.build
+          context: ./blog-client
+          file: ./blog-client/Dockerfile.build
           push: true
           tags: ${{ env.DOCKER_IMAGE }}:latest
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connect via SSH and execute a deployment script
+        uses: appleboy/ssh-action@master
+        env:
+          TARGET_DIR: ${{ secrets.TARGET_DIR }}
+          SERVICE_NAME: ${{ secrets.WEB_SERVICE_NAME }}
+          IMAGE_NAME: ${{ secrets.WEB_IMAGE_NAME }}
+          DOPPLER_TOKEN: ${{ secrets.WEB_DOPPLER_TOKEN }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          envs: TARGET_DIR,SERVICE_NAME,IMAGE_NAME,DOPPLER_TOKEN
+          script: |
+            cd "$TARGET_DIR"
+            git pull origin main
+            ./deploy.sh "$TARGET_DIR" "$SERVICE_NAME" "$IMAGE_NAME" "$DOPPLER_TOKEN"
