@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import AppLayout from '@/components/AppLayout';
 import { fetchPostsOfCategoryThunk } from '@/redux/features/fetchPostsOfCategory/actions/fetchPostsOfCategoryAction';
 import PostCard from '@/components/PostCard';
+import Head from 'next/head';
 
 const Category = () => {
   const router = useRouter();
@@ -19,10 +20,15 @@ const Category = () => {
   }, [router.isReady]);
 
   return (
-    <AppLayout>
-      <h3>{category}</h3>
-      <PostCard posts={posts}></PostCard>
-    </AppLayout>
+    <>
+      <Head>
+        <title>{category}</title>
+      </Head>
+      <AppLayout>
+        <h3>{category}</h3>
+        <PostCard posts={posts}></PostCard>
+      </AppLayout>
+    </>
   );
 };
 

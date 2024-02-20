@@ -6,6 +6,7 @@ import AppLayout from '../../components/AppLayout';
 import { fetchCategoryThunk } from '@/redux/features/fetchCategory/actions/fetchCategoryAction';
 import Categorization from '@/components/Categorization';
 import Title from '@/components/Categorization/Title';
+import Head from 'next/head';
 
 const CategoryList = () => {
   const dispatch = useAppDispatch();
@@ -19,6 +20,9 @@ const CategoryList = () => {
 
   return (
     <>
+      <Head>
+        <title>Categories</title>
+      </Head>
       <AppLayout>
         <Title title={'Category'}></Title>
         <ListGroup>

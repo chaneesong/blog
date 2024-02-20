@@ -20,6 +20,9 @@ const TagList = () => {
 
   return (
     <>
+      <Head>
+        <title>Tags</title>
+      </Head>
       <AppLayout>
         <Title title={'Tag'}></Title>
         <ListGroup>

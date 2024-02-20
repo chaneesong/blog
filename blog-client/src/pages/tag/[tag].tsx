@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/reduxHooks';
 import { fetchPostsOfTagThunk } from '@/redux/features/fetchPostsOfTag/actions/fetchPostsOfTagAction';
 import PostCard from '@/components/PostCard';
+import Head from 'next/head';
 
 const Tag = () => {
   const router = useRouter();
@@ -18,10 +19,15 @@ const Tag = () => {
   }, [router.isReady]);
 
   return (
-    <AppLayout>
-      <h3>{tag}</h3>
-      <PostCard posts={posts}></PostCard>
-    </AppLayout>
+    <>
+      <Head>
+        <title>{tag}</title>
+      </Head>
+      <AppLayout>
+        <h3>{tag}</h3>
+        <PostCard posts={posts}></PostCard>
+      </AppLayout>
+    </>
   );
 };
 

@@ -7,13 +7,14 @@ import Title from '@/components/Post/Title';
 import TOC from '@/components/Post/TOC';
 import { fetchPostThunk } from '@/redux/features/fetchPost/actions/fetchPostAction';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const Post = () => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useAppDispatch();
   const postData = useAppSelector((state) => state.poster.data);
-  const { content, ...title } = postData; // TODO 이미지 변수 임시 제거
+  const { content, ...title } = postData;
   const titleElement: PostTitleProp = { ...title };
 
   useEffect(() => {
@@ -24,6 +25,9 @@ const Post = () => {
 
   return (
     <>
+      <Head>
+        <title>{titleElement.title}</title>
+      </Head>
       <AppLayout>
         <div>
           <Title titleProp={titleElement}></Title>
