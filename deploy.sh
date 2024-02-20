@@ -8,7 +8,6 @@ DOPPLER_TOKEN=$4
 cd $TARGET_DIR
 docker compose down $SERVICE --volumes --rmi all
 docker pull ghcr.io/chaneesong/$IMAGE_NAME:latest
-$($DOPPLER_TOKEN) docker compose up -d $SERVICE
 if [ "$SERVICE" = "api" ]; then
   DOPPLER_TOKEN_API=$(DOPPLER_TOKEN) docker compose up -d $SERVICE
 else
