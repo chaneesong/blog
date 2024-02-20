@@ -63,6 +63,7 @@ jobs:
           TARGET_DIR: ${{ secrets.TARGET_DIR }}
           SERVICE_NAME: ${{ secrets.API_SERVICE_NAME }}
           IMAGE_NAME: ${{ secrets.API_IMAGE_NAME }}
+          DOPPLER_TOKEN: ${{ secrets.API_DOPPLER_TOKEN }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -71,4 +72,4 @@ jobs:
           script: |
             cd "$TARGET_DIR"
             git pull origin main
-            ./deploy.sh "$TARGET_DIR" "$SERVICE_NAME" "$IMAGE_NAME"
+            ./deploy.sh "$TARGET_DIR" "$SERVICE_NAME" "$IMAGE_NAME" "$DOPPLER_TOKEN"
