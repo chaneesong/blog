@@ -28,6 +28,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+          envs: TARGET_DIR,SERVICE_NAME,IMAGE_NAME,DOPPLER_TOKEN
           script: |
-            cd $TARGET_DIR
-            ./deploy.sh $TARGET_DIR $SERVICE_NAME $IMAGE_NAME $DOPPLER_TOKEN
+            cd "$TARGET_DIR"
+            ./deploy.sh "$TARGET_DIR" "$SERVICE_NAME" "$IMAGE_NAME" "$DOPPLER_TOKEN"
