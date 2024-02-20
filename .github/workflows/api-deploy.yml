@@ -3,6 +3,8 @@ name: API Server Deploy with Docker
 on:
   workflow_run:
     workflows: ['API Server Build with Docker']
+    types:
+      - completed
   push:
     branches:
       - main

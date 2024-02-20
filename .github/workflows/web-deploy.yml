@@ -3,6 +3,8 @@ name: Web Server Deploy with Docker
 on:
   workflow_run:
     workflows: ['Web Server Build with Docker']
+    types:
+      - completed
   push:
     branches:
       - main
