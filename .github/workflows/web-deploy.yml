@@ -1,0 +1,31 @@
+name: Web Server Deploy with Docker
+
+on:
+  workflow_run:
+    workflows: ['Web Server Build with Docker']
+  push:
+    branches:
+      - main
+    paths:
+      - 'blog-client/**'
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connect via SSH and execute a deployment script
+        uses: appleboy/ssh-action@master
+        env:
+          TARGET_DIR: ${{ secrets.TARGET_DIR }}
+          SERVICE_NAME: ${{ secrets.WEB_SERVICE_NAME }}
+          IMAGE_NAME: ${{ secrets.WEB_IMAGE_NAME }}
+          DOPPLER_TOKEN: ${{ secrets.WEB_DOPPLER_TOKEN }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd $TARGET_DIR
+            ./deploy.sh $TARGET_DIR $SERVICE_NAME $IMAGE_NAME $DOPPLER_TOKEN

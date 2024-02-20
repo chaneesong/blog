@@ -1,4 +1,4 @@
-name: Web Server CI/CD With Docker
+name: Web Server Build With Docker
 
 on:
   push:
