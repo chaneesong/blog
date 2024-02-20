@@ -10,7 +10,7 @@ docker compose down $SERVICE --volumes --rmi all
 docker pull ghcr.io/chaneesong/$IMAGE_NAME:latest
 $($DOPPLER_TOKEN) docker compose up -d $SERVICE
 if [ "$SERVICE" = "api" ]; then
-  DOPPLER_TOKEN_API='$(DOPPLER_TOKEN)' docker compose up -d $SERVICE
+  DOPPLER_TOKEN_API=$(DOPPLER_TOKEN) docker compose up -d $SERVICE
 else
-  DOPPLER_TOKEN_WEB='$(DOPPLER_TOKEN)' docker compose up -d $SERVICE
+  DOPPLER_TOKEN_WEB=$(DOPPLER_TOKEN) docker compose up -d $SERVICE
 fi
