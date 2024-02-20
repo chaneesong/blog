@@ -1,10 +1,11 @@
 #! /bin/bash
 
-SERVICE=$1
-IMAGE_NAME=$2
-DOPPLER_TOKEN=$3
+TARGET_DIR=$1
+SERVICE=$2
+IMAGE_NAME=$3
+DOPPLER_TOKEN=$4
 
-cd /home/ubuntu/blog
+cd $TARGET_DIR
 git pull origin main
 docker-compose down $SERVICE --volumes --rmi all
 docker pull ghcr.io/chaneesong/$IMAGE_NAME:latest
