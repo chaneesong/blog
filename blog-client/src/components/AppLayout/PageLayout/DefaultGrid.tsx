@@ -1,13 +1,14 @@
 import React from 'react';
+import { Center, Side } from './styled';
 
-const DefaultGrid = ({ children }: ReactNodeProps) => {
+const DefaultContainer = ({ children }: ReactNodeProps) => {
   return (
     <>
-      <div></div>
-      <div>{children}</div>
-      <div></div>
+      <Side></Side>
+      <Center>{children}</Center>
+      <Side></Side>
     </>
   );
 };
 
-export default DefaultGrid;
+export default DefaultContainer;

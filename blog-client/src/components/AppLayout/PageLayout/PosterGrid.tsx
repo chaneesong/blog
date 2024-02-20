@@ -1,15 +1,16 @@
 import React from 'react';
+import { Center, Side } from './styled';
 
-const PosterGrid = ({ children }: ReactNodeProps) => {
+const PosterContainer = ({ children }: ReactNodeProps) => {
   const [content, toc] = React.Children.toArray(children);
 
   return (
     <>
-      <div></div>
-      <div>{content}</div>
-      <div>{toc}</div>
+      <Side></Side>
+      <Center>{content}</Center>
+      <Side>{toc}</Side>
     </>
   );
 };
 
-export default PosterGrid;
+export default PosterContainer;

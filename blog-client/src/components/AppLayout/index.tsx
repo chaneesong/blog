@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import Navbar from './Navigation';
 import Footer from './Footer';
 import styled from 'styled-components';
-import PosterGrid from './PageLayout/PosterGrid';
-import DefaultGrid from './PageLayout/DefaultGrid';
+import PosterContainer from './PageLayout/PosterGrid';
+import DefaultContainer from './PageLayout/DefaultGrid';
 
 const MainContainer = styled.div`
   display: flex;
@@ -15,23 +15,24 @@ const MainContainer = styled.div`
   background-color: #1c2128;
 `;
 
-const GridContainer = styled.div`
+const FlexContainer = styled.div`
   flex-grow: 1;
   background-color: #22272e;
-  display: grid;
 
   @media only screen and (min-width: 1025px) {
-    grid-template-columns: 1fr 1.3fr 1fr;
+    display: flex;
     gap: 16px;
   }
 
   @media only screen and (min-width: 694px) and (max-width: 1024px) {
-    grid-template-columns: 1fr 3fr 1fr;
+    display: flex;
     gap: 16px;
   }
 
   @media only screen and (max-width: 694px) {
     display: block;
+    padding: 0 10px;
+    gap: 16px;
   }
 `;
 
@@ -42,13 +43,13 @@ const AppLayout = ({ children }: ReactNodeProps) => {
   return (
     <MainContainer>
       <Navbar />
-      <GridContainer>
+      <FlexContainer>
         {hasId ? (
-          <PosterGrid>{children}</PosterGrid>
+          <PosterContainer>{children}</PosterContainer>
         ) : (
-          <DefaultGrid>{children}</DefaultGrid>
+          <DefaultContainer>{children}</DefaultContainer>
         )}
-      </GridContainer>
+      </FlexContainer>
       <Footer />
     </MainContainer>
   );
