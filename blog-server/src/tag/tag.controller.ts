@@ -14,6 +14,6 @@ export class TagController {
   @Get(':keyword')
   @UseInterceptors(PostDataTransformInterceptor)
   findOne(@Param('keyword') keyword: string) {
-    return this.tagService.findAllPostsOfTag(keyword);
+    return this.tagService.findAllPostsOfTag(decodeURIComponent(keyword));
   }
 }

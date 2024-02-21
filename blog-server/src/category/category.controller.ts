@@ -14,7 +14,9 @@ export class CategoryController {
   @Get(':keyword')
   @UseInterceptors(PostDataTransformInterceptor)
   async findOne(@Param('keyword') keyword: string) {
-    const result = await this.categoryService.findAllPostsOfCategory(keyword);
+    const result = await this.categoryService.findAllPostsOfCategory(
+      decodeURIComponent(keyword),
+    );
     return result;
   }
 }
