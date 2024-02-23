@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const fetchPostsOfCategory = async (keyword: string): Promise<any> => {
-  const response = axios.get(`/category/${encodeURIComponent(keyword)}`);
+  const response = axios.get(`/category/${keyword}`);
   return response;
 };
 

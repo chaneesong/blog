@@ -14,7 +14,7 @@ const Tag = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      dispatch(fetchPostsOfTagThunk(tag as string));
+      dispatch(fetchPostsOfTagThunk(encodeURIComponent(tag as string)));
     }
   }, [router.isReady]);
 

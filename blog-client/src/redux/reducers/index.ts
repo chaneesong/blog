@@ -12,8 +12,8 @@ import axios from 'axios';
 
 const backURL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost/api'
-    : 'http://chaneesong.xyz/api';
+    ? 'https://localhost/api'
+    : 'https://chaneesong.xyz/api';
 
 axios.defaults.baseURL = `${backURL}`;
 axios.defaults.withCredentials = true;

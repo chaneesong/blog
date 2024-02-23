@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const fetchPostsOfTag = async (keyword: string): Promise<any> => {
-  return axios.get(`/tag/${encodeURIComponent(keyword)}`);
+  return axios.get(`/tag/${keyword}`);
 };
 
 export const fetchPostsOfTagThunk = createAsyncThunk(

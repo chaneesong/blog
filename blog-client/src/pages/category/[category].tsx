@@ -15,7 +15,9 @@ const Category = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      dispatch(fetchPostsOfCategoryThunk(category as string));
+      dispatch(
+        fetchPostsOfCategoryThunk(encodeURIComponent(category as string))
+      );
     }
   }, [router.isReady]);
 
