@@ -15,8 +15,6 @@ interface Post {
   createdAt: string;
   category: Category;
   tags: Tag[];
-  // TODO 이미지 변수 임시 제거
-  // image?: string;
 }
 
 interface PostTitleProp {
