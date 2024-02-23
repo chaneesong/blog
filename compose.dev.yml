@@ -1,4 +1,18 @@
 services:
+  nginx:
+    image: nginx:1.22.1-alpine
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./proxy/nginx.dev.conf:/etc/nginx/nginx.conf
+      - ./proxy/dev/minica-key.pem:/var/lib/minica/minica-key.pem
+      - ./proxy/dev/minica.pem:/var/lib/minica/minica.pem
+    depends_on:
+      - web
+      - backend
+
   web:
     container_name: client
     build:
@@ -6,20 +20,23 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - 3000:3000
+    expose:
+      - '3000'
     volumes:
       - ./blog-client:/client/
       - /client/node_modules
     environment:
       - DOPPLER_TOKEN=${DOPPLER_TOKEN_WEB}
 
-  api:
-    container_name: server
-    network_mode: host
+  backend:
+    container_name: backend
     build:
       context: ./blog-server
       dockerfile: Dockerfile.dev
     ports:
       - 3030:3030
+    expose:
+      - '3030'
     volumes:
       - ./blog-server:/server/
       - /server/node_modules

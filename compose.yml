@@ -9,8 +9,6 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/lib/letsencrypt:/var/lib/letsencrypt
       - ./proxy/nginx.conf:/etc/nginx/nginx.conf
-      - ./proxy/nginx/sites.conf:/etc/nginx/confd/sites.conf
-      - ./proxy/nginx/sites-enabled:/etc/nginx/sites-enabled
     depends_on:
       - web
       - api
