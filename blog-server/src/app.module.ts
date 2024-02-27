@@ -10,6 +10,7 @@ import { PostsController } from './posts/posts.controller';
 import { ExceptionModule } from './exception/exception.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './common/core.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { CoreModule } from './common/core.module';
     ExceptionModule,
     AuthModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
