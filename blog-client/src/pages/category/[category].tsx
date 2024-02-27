@@ -14,10 +14,9 @@ const Category = () => {
   const posts = useAppSelector((state) => state.postsOfCategory.data);
 
   useEffect(() => {
-    if (router.isReady) {
-      dispatch(
-        fetchPostsOfCategoryThunk(encodeURIComponent(category as string))
-      );
+    const keyword = Array.isArray(category) ? category[0] : category;
+    if (keyword && router.isReady) {
+      dispatch(fetchPostsOfCategoryThunk(encodeURIComponent(keyword)));
     }
   }, [router.isReady]);
 

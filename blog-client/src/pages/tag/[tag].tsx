@@ -13,8 +13,10 @@ const Tag = () => {
   const posts = useAppSelector((state) => state.postsOfTag.data);
 
   useEffect(() => {
-    if (router.isReady) {
-      dispatch(fetchPostsOfTagThunk(encodeURIComponent(tag as string)));
+    const keyword = Array.isArray(tag) ? tag[0] : tag;
+
+    if (keyword && router.isReady) {
+      dispatch(fetchPostsOfTagThunk(encodeURIComponent(keyword)));
     }
   }, [router.isReady]);
 
